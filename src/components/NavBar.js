@@ -3,7 +3,6 @@ import './NavBar.css';
 import {Link} from 'react-router-dom';
 
 export default function NavBar() {
-  console.log('NavBar');
   return(
     <div className='navbar'>
       <h1>iCode</h1>

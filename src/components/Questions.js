@@ -5,12 +5,8 @@ import {connect} from 'react-redux';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 
 class Questions extends Component {
-  
-  // console.log(props.match.params.topic);
-  
 
   createList() {
-    console.log(this.props.match.params.topic.toLowerCase());
     let thisTopic = this.props.match.params.topic.toLowerCase();
 
     
@@ -18,7 +14,7 @@ class Questions extends Component {
       console.log('question type', question, question.topic)
       if(thisTopic === question.topic){
         return(
-           <li key={question.id}><Link to={{pathname: `/answers/${question.id}`}}>{question.question}</Link><p>{question.date}</p></li>
+           <li key={question.id}><Link to={{pathname: `/answers/${question.id}`}}>{question.question}</Link><p>{question.date.toLocaleDateString()}</p></li>
 
         )
       }

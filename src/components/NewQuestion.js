@@ -7,9 +7,8 @@ class NewQuestion extends Component{
   //   console.log('this click was handled');
   //   console.log(this);
   // }
-  addQuestion(question,topic,user,date){
-    console.log(question,topic,user);
-    this.props.dispatch(addQuestion(question,topic,user,date));
+  addQuestion(question,topic,user,date,id,comments){
+    this.props.dispatch(addQuestion(question,topic,user,date,id,comments));
   };
 
     render(){
@@ -36,9 +35,8 @@ class NewQuestion extends Component{
               let questionTopicIndex = document.getElementById('selected-topic').selectedIndex
               let questionTopicSelected = document.getElementById('selected-topic').options
               let questionTopic = questionTopicSelected[questionTopicIndex];
-              console.log('questionArea, ', questionArea)
-              console.log(questionTopic.id)
-              this.addQuestion(questionArea,questionTopic.id,'user2',Date.now())
+              let newDate = new Date();
+              this.addQuestion(questionArea,questionTopic.id,'user2',newDate,Math.floor((Math.random()*100000)+1),[])
               console.log('NewQuestion', this);
             }}
             className='submit-question'>Submit Question

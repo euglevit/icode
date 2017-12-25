@@ -1,19 +1,19 @@
 import React,{Component} from 'react';
 import Questions from './Questions';
+import NewAnswer from './NewAnswer';
 import {BrowserRouter as Link,Route,Router} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 
+
 class Answers extends Component{
 
   createList(){
-    console.log(this.props.match.params.question);
     let thisQuestion = this.props.match.params.question;
-
+  
     return this.props.questions.map((question) => {
       if(thisQuestion === question.id){
         return question.comments.map((comment) => {
-          console.log(comment.answerid);
           return(this.props.answers.map((answer) => {
             if(comment.answerid === answer.id){
               return (
@@ -24,12 +24,36 @@ class Answers extends Component{
         })
       }
     })
-
-
   }
+
   render(){
+    let thisQuestion = this.props.match.params.question;
+    console.log(thisQuestion);
+    let headerQuestion = this.props.questions.map((question) => {
+      console.log(question.id);
+      if(thisQuestion == question.id){
+        console.log('questionid',question);
+        return question.question;
+      }
+    })
+    let headerId = this.props.questions.map((question) => {
+      console.log(question.id);
+      if(thisQuestion == question.id){
+        console.log('questionid',typeof(question.id));
+        return question.id;
+      }
+    })
+    headerId = headerId.filter((header) => {
+      return typeof header === 'string';
+    })
+    
+  console.log('header',typeof(headerId));
     return (
-      <h1>{this.createList()}</h1>
+      <div>
+        <h1>{headerQuestion}</h1>
+        <NewAnswer questionId={headerId} />
+        <h2>{this.createList()}</h2>
+      </div>
     )
   } 
 }

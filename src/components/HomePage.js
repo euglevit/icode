@@ -8,7 +8,6 @@ import NewQuestion from './NewQuestion';
 import {BrowserRouter as Router, Route, Links} from 'react-router-dom';
 
 export default function HomePage(){
-  console.log('HomePage');
   return(
     <div>   
         <NavBar />

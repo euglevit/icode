@@ -1,10 +1,9 @@
 import React from 'react';
-import {Link,Router,Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './Topics.css';
 
 
 export default function Topics(){
-  console.log('Topics');
   function handleClick(event) {
     
     event.preventDefault();
