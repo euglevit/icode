@@ -1,0 +1,10 @@
+.navbar {
+  padding: 10px;
+  background: lightgray;
+}
+
+.navbar h1{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 50px;
+}

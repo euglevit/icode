@@ -1,0 +1,13 @@
+.topics{
+  text-align: center;
+  background: lightgray;
+}
+.topicsList{
+  list-style-type: none;
+}
+.topic{
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+}
