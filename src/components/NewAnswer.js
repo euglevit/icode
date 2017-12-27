@@ -1,8 +1,15 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {addAnswer} from '../actions/index'
+import {addAnswer} from '../actions/index';
+import {Form, FormControl, Button, Collapse} from 'react-bootstrap';
+import './NewAnswer.css';
 
 class NewAnswer extends Component{
+  constructor(...args) {
+    super(...args);
+
+    this.state = {};
+  }
 
   addAnswer(id,user,comment,questionId){
     console.log('NewAnswer',questionId);
@@ -13,15 +20,25 @@ class NewAnswer extends Component{
     console.log('Answer',this.props.questionId);
     return(
       <div>
-        <textarea id='newAnswer' placeholder='Enter Comment'></textarea>
-        <button 
-        onClick= {(event) => {
-          event.preventDefault();
-          event.stopPropagation();
-          let answerArea = document.getElementById('newAnswer').value;
-          this.addAnswer((Math.floor((Math.random()*100000)+1)).toString(),'user2',answerArea,this.props.questionId);
-        }}
-        className='submitAnswer'>Submit</button>
+        <Button onClick={() => this.setState({ open: !this.state.open })}>
+        click
+        </Button>
+        <Collapse in={this.state.open}>
+            <Form>
+              <FormControl id='newAnswer' placeholder='Enter Comment'/>
+              <Button
+              onClick= {(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                let answerArea = document.getElementById('newAnswer').value;
+                this.addAnswer((Math.floor((Math.random()*100000)+1)).toString(),'user2',answerArea,this.props.questionId);
+              }}
+              className='submitAnswer'>
+              Submit
+              </Button>
+            </Form>
+        </Collapse>
+        
       </div>
     )
   }

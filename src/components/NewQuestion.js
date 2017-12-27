@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {addQuestion}from '../actions/index';
+import {Form, FormControl, Button} from 'react-bootstrap';
 
 class NewQuestion extends Component{
   // handleClick(event){
@@ -15,7 +16,7 @@ class NewQuestion extends Component{
     return(
       <div>
         <h1>new question</h1>
-        <form className='newQuestion'>
+        <Form inline className='newQuestion'>
           <legend>Topic</legend>
             <select id='selected-topic'> 
               <option id='javascript' value='javascript'>Javascript</option>
@@ -26,8 +27,8 @@ class NewQuestion extends Component{
               <option id='git' value='git'>Git</option>
             </select>
             <legend>Question</legend>
-            <textarea id='question-ask' placeholder='What is your question'></textarea>
-            <button 
+            <FormControl id='question-ask' placeholder='What is your question'/>
+            <Button
             onClick={(event) => {
               event.preventDefault();
               event.stopPropagation();
@@ -40,8 +41,8 @@ class NewQuestion extends Component{
               console.log('NewQuestion', this);
             }}
             className='submit-question'>Submit Question
-            </button>
-        </form>
+            </Button>
+        </Form>
       </div>
     )
   }

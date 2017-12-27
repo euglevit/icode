@@ -14,7 +14,7 @@ class Questions extends Component {
       console.log('question type', question, question.topic)
       if(thisTopic === question.topic){
         return(
-           <li key={question.id}><Link to={{pathname: `/answers/${question.id}`}}>{question.question}</Link><p>{question.date.toLocaleDateString()}</p></li>
+           <li className='list-group-item' key={question.id}><Link to={{pathname: `/answers/${question.id}`}}>{question.question}</Link><p><span className="badge">{question.comments.length} comments</span>{question.date.toLocaleDateString()}</p></li>
 
         )
       }
@@ -24,7 +24,7 @@ class Questions extends Component {
     return(
       <div>
         <h1>{this.props.match.params.topic}</h1>
-        <h2>{this.createList()}</h2>
+        <h2><ul className='list-group'>{this.createList()}</ul></h2>
         <Route path='/answers/:question' component={Answers}></Route>
       </div>
     )
@@ -33,7 +33,8 @@ class Questions extends Component {
 }
 const mapStateToProps = state => {
   return{
-    questions: state.questions
+    questions: state.questions,
+    answers: state.answers
   };
 };
 

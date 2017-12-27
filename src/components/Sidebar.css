@@ -1,0 +1,38 @@
+html, body {
+  height: 100%;
+}
+
+#sidebar-wrapper{
+  z-index: 1;
+  position: absolute; 
+  width: 0px;
+  height: 100%;
+  overflow-y: hidden;
+  background: #2C3E50;
+  opacity: 0.9;
+  transition: width .5s
+}
+
+.wrapper.menuDisplayed #sidebar-wrapper{
+  width: 250px;
+  transition: width .5s;
+}
+
+.topics {
+  list-style: none;
+  color: white
+}
+.topicsList{
+  list-style: none;
+  color: white;
+  padding-left: 0px;
+}
+.topic a{
+  color: white;
+}
+.sidebar-nav{
+  height: 100%;
+}
+.sidebar-nav li{
+  line-height: 40px;
+}

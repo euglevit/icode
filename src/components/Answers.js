@@ -17,7 +17,7 @@ class Answers extends Component{
           return(this.props.answers.map((answer) => {
             if(comment.answerid === answer.id){
               return (
-                <li>{answer.comment}</li>
+                <li className='list-group-item'>{answer.comment}</li>
               )
             }
           }))
@@ -52,7 +52,7 @@ class Answers extends Component{
       <div>
         <h1>{headerQuestion}</h1>
         <NewAnswer questionId={headerId} />
-        <h2>{this.createList()}</h2>
+        <h2><ul className='list-group'>{this.createList()}</ul></h2>
       </div>
     )
   } 

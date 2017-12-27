@@ -1,0 +1,13 @@
+.main-content{
+  padding-left:0px;
+  transition: padding-left .5s;
+  height: 100%;
+}
+
+.wrapper.menuDisplayed .main-content{
+  padding-left: 250px;
+  transition: padding-left .5s;
+}
+.wrapper{
+  height: 100%;
+}

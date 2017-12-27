@@ -85,26 +85,7 @@ export const newQuestionsReducer = (state = initialState, action) => {
     })
   } else if (action.type === actions.ADD_ANSWER) {
     console.log('using second reducer');
-    //   state.questions.map((question) => {
-    //       if (question.id === action.questionId[0]) {
-    //         console.log('this worked', question);
-    //         question = Object.assign({}, question, {
-    //           comments: {
-    //             ...question.comments,
-    //             {
-    //               answerId: action.id
-    //             }
-    //           }
-    //         }]
 
-    //       })
-
-    //     console.log('question1', question);
-    //     let newState = Object.assign({}, state, question); console.log('newstate', state);
-    //     return newState;
-    //   }
-
-    // })
     let questionIndex = state.questions.map((question) => {
       if (question.id === action.questionId[0]) {
         return state.questions.indexOf(question);
@@ -117,9 +98,10 @@ export const newQuestionsReducer = (state = initialState, action) => {
 
     let selectedQuestion = state.questions.map((question) => {
       if (question.id === action.questionId[0]) {
-        question.comments.push({
+        let question = Array.from(question);
+        question.comments.concat([{
           answerId: action.id
-        })
+        }])
         console.log('selected', question)
       }
     })
