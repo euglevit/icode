@@ -2,11 +2,29 @@
   padding: 10px;
   background: lightgray;
   margin-bottom: 0px;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .navbar h1{
-  display: inline-block;
+  display: inline-block; 
+  text-align: right;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  margin: 0 0 0 0;
+  align-self: auto;
+}
+.navbar-button{
   vertical-align: middle;
-  line-height: 6px;
+  flex-grow: 1;
+  align-self: auto;
+  width: 0px;
+}
+.navbar p{
+  flex-grow: 1;
+  width: 40px;
+  margin: 0 0 0 0;
+  align-self: auto;
+  font-size: 20px;
 }

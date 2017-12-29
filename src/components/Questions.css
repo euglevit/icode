@@ -1,0 +1,19 @@
+.total-question-ul{
+  max-width: 500px;
+  margin: auto;
+}
+.total-question{
+  margin-top: 10px;
+  cursor: pointer;
+}
+.asked-question{
+  font-size: 13px;
+}
+.topic-header{
+  margin: auto;
+  display: block;
+}
+.topic-header-wrapper{
+  display: block;
+  text-align: center;
+}

@@ -98,8 +98,7 @@ export const newQuestionsReducer = (state = initialState, action) => {
 
     let selectedQuestion = state.questions.map((question) => {
       if (question.id === action.questionId[0]) {
-        let question = Array.from(question);
-        question.comments.concat([{
+        question.comments.push([{
           answerId: action.id
         }])
         console.log('selected', question)

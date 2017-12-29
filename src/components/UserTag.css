@@ -1,0 +1,22 @@
+.user-tag{
+  width: 100px;
+  background: #777;
+  height: 55px;
+  padding-top: 4px;
+  padding-left: 8px;
+  padding-bottom: 10px;
+  position: absolute;
+  right: 18px;
+  color: white;
+  font-weight: 700;
+}
+.user-tag-wrapper{
+  display: block;
+  margin-top: 32px;
+  height: 55px;
+}
+.user-tag p{
+  font-size: 12px;
+}
+.user-tag p p{
+}

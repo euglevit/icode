@@ -11,16 +11,13 @@ export default function NavBar() {
     event.nativeEvent.stopImmediatePropagation();
     console.log('toggle');
     let el = document.querySelector('.wrapper');
-    el.onclick = function() {
-      console.log('toggled');
-      el.classList.toggle('menuDisplayed');
-    }
+    el.classList.toggle('menuDisplayed');
+    
   }
   return(
     <div className='navbar'>
-      <p onClick={handleToggleClick.bind()} className='btn btn-success' id='menu-toggle'>Toggle</p>
+      <p onClick={handleToggleClick} id='menu-toggle'><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></p>
       <h1>iCode</h1>
-      <button><Link to={{pathname: '/new'}}>New Question</Link></button>
     </div>
   )
 }

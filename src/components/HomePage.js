@@ -20,7 +20,7 @@ export default function HomePage(){
           <Sidebar />
         </div>
         <div className='main-content'>
-          <About />
+          {/* <About /> */}
           {/* <Topics /> */}
           <Route path='/questions/:topic' component={Questions}></Route>
           <Route path='/answers/:question' component={Answers}></Route>
