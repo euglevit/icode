@@ -1,0 +1,23 @@
+.new-question-form{
+  text-align: center;
+}
+.new-question-form h1{
+  display: block;
+  text-align: center;
+  font-size: 60px;
+}
+.newQuestion{
+  text-align: center
+}
+#question-ask{
+  max-width: 500px;
+  width: 90%;
+  height: 300px;
+  display: block;
+  margin: auto;
+  text-align: left;
+  resize: none;
+}
+.submit-question{
+  margin-top: 10px;
+}

@@ -20,11 +20,11 @@ class Questions extends Component {
             this.props.history.push(`/answers/${question.id}`)
             }} 
             className='total-question'>
-            <li className='list-group-item' key={question.id}><span className='asked-question'><p>{question.question}</p></span><span className="badge">{question.comments.length} comments</span><UserTag 
-            user={question.user}
-            date={question.date.toLocaleDateString()}
-            time={question.date.toLocaleTimeString()}
-            /></li>
+              <li className='list-group-item' key={question.id}><span className='asked-question'><p>{question.question}</p></span><span className="badge">{question.comments.length} comments</span><UserTag 
+              user={question.user}
+              date={question.date.toLocaleDateString()}
+              time={question.date.toLocaleTimeString()}
+              /></li>
           </div>
 
         )

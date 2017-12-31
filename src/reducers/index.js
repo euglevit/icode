@@ -84,39 +84,51 @@ export const newQuestionsReducer = (state = initialState, action) => {
       }]
     })
   } else if (action.type === actions.ADD_ANSWER) {
-    console.log('using second reducer');
 
-    let questionIndex = state.questions.map((question) => {
-      if (question.id === action.questionId[0]) {
-        return state.questions.indexOf(question);
-      }
-    })
-    questionIndex = questionIndex.filter(quest => {
-      return typeof quest === 'number';
-    })
-    questionIndex = parseInt(questionIndex);
+    return {
+      ...state,
+      questions: state.questions.map(
+        q =>
+          q.id === action.questionId
+            ? {
+                ...q,
+                comments: [...q.comments, {answerid: action.id}],
+              }
+            : q,
+      ),
+      answers: [...state.answers, {
+        id: action.id,
+        user: action.user,
+        comment: action.comment
+      }]
+    }
+    // console.log('state', state);
+    // return (
+    //   Object.assign({}, state, {
 
-    let selectedQuestion = state.questions.map((question) => {
-      if (question.id === action.questionId[0]) {
-        question.comments.push([{
-          answerId: action.id
-        }])
-        console.log('selected', question)
-      }
-    })
-    console.log('state', state);
-    return (
-      Object.assign({}, state, {
-        answers: [...state.answers, {
-          id: action.id,
-          user: action.user,
-          comment: action.comment
-        }]
-      }))
-  }
+    //   }))
+  } else if (action.type === actions.EDIT_COMMENT) {
+    return {
+      ...state,
+      answers: state.answers.map((item,index) => {
+        if(item.id === action.answerid){
+          item.comment = action.comment;
+          return item;
+        }
+        return {
+          ...item,
+          ...action.item
+        }
+      })
 
-  return (
-    console.log('new state', state),
-    state
-  );
+        }
+      
+    }else if (action.type === actions.DELETE_COMMENT) {
+      console.log(state.answers.filter(item => item.id !== action.answerid))
+      let filteredAnswer = state.answers.filter(item => item.id !== action.answerid)
+      return {...state, answers : filteredAnswer}
+    }
+  
+
+  return state
 }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {addQuestion}from '../actions/index';
 import {Form, FormControl, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import './NewQuestion.css';
 
 class NewQuestion extends Component{
   // handleClick(event){
@@ -18,8 +19,8 @@ class NewQuestion extends Component{
     render(){
       
     return(
-      <div>
-        <h1>new question</h1>
+      <div className='new-question-form'>
+        <h1>New Question</h1>
         <Form inline className='newQuestion'>
           <legend>Topic</legend>
             <select id='selected-topic'> 
@@ -31,8 +32,9 @@ class NewQuestion extends Component{
               <option id='git' value='Git'>Git</option>
             </select>
             <legend>Question</legend>
-            <FormControl id='question-ask' placeholder='What is your question'/>
+            <textarea id='question-ask' placeholder='What is your question'></textarea>
             <Button
+            type = 'submit'
             onClick={(event) => {
               event.preventDefault();
               event.stopPropagation();
@@ -41,7 +43,8 @@ class NewQuestion extends Component{
               let questionTopicSelected = document.getElementById('selected-topic').options
               let questionTopic = questionTopicSelected[questionTopicIndex];
               let newDate = new Date();
-              this.addQuestion(questionArea,questionTopic.id,'user2',newDate,Math.floor((Math.random()*100000)+1),[])
+              let newId = (Math.floor((Math.random()*100000)+1)).toString();
+              this.addQuestion(questionArea,questionTopic.id,'user2',newDate,newId,[]);
               this.props.history.push(`/questions/${questionTopic.value}`)
             }}
             className='submit-question'>

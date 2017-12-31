@@ -12,7 +12,6 @@ class NewAnswer extends Component{
   }
 
   addAnswer(id,user,comment,questionId){
-    console.log('NewAnswer',questionId);
     this.props.dispatch(addAnswer(id,user,comment,questionId));
   }
 
@@ -25,8 +24,8 @@ class NewAnswer extends Component{
         </Button>
         <Collapse in={this.state.open}>
             <Form>
-              <FormControl id='newAnswer' placeholder='Enter Comment'/>
-              <Button
+              <textarea id='newAnswer' placeholder='Enter Comment'></textarea>
+              <Button type='submit'
               onClick= {(event) => {
                 event.preventDefault();
                 event.stopPropagation();
