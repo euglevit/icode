@@ -1,73 +1,76 @@
 import * as actions from '../actions';
 
 const initialState = {
-  questions: [{
-      topic: 'javascript',
-      id: '1234567',
-      user: 'test1',
-      question: 'What is javascript',
-      date: new Date(),
-      comments: [{
-          answerid: '123'
-        },
-        {
-          answerid: '234'
-        }
-      ]
-    },
-    {
-      topic: 'jquery',
-      id: '3456789',
-      user: 'test5',
-      question: 'What is jquery',
-      date: new Date(),
-      comments: [{
-          answerid: '123'
-        },
-        {
-          answerid: '567'
-        },
-        {
-          answerid: '234'
-        }
-      ]
-    },
-    {
-      topic: 'javascript',
-      id: '2345678',
-      user: 'test2',
-      question: 'What is a for loop',
-      date: new Date(),
-      comments: [{
-          answerid: '567'
-        },
-        {
-          answerid: '678'
-        }
-      ]
-    }
-  ],
-  answers: [{
-      id: '123',
-      user: 'test3',
-      comment: 'javascript is a programming language'
-    },
-    {
-      id: '234',
-      user: 'test4',
-      comment: 'I dont know what javascript is.'
-    },
-    {
-      id: '567',
-      user: 'test3',
-      comment: 'I dont know what a for loop is.'
-    },
-    {
-      id: '678',
-      user: 'test4',
-      comment: 'It is a loop.'
-    }
-  ]
+  questions : [],
+  answers : []
+
+  // questions: [{
+  //     topic: 'javascript',
+  //     id: '1234567',
+  //     user: 'test1',
+  //     question: 'What is javascript',
+  //     date: new Date(),
+  //     comments: [{
+  //         answerid: '123'
+  //       },
+  //       {
+  //         answerid: '234'
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     topic: 'jquery',
+  //     id: '3456789',
+  //     user: 'test5',
+  //     question: 'What is jquery',
+  //     date: new Date(),
+  //     comments: [{
+  //         answerid: '123'
+  //       },
+  //       {
+  //         answerid: '567'
+  //       },
+  //       {
+  //         answerid: '234'
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     topic: 'javascript',
+  //     id: '2345678',
+  //     user: 'test2',
+  //     question: 'What is a for loop',
+  //     date: new Date(),
+  //     comments: [{
+  //         answerid: '567'
+  //       },
+  //       {
+  //         answerid: '678'
+  //       }
+  //     ]
+  //   }
+  // ],
+  // answers: [{
+  //     id: '123',
+  //     user: 'test3',
+  //     comment: 'javascript is a programming language'
+  //   },
+  //   {
+  //     id: '234',
+  //     user: 'test4',
+  //     comment: 'I dont know what javascript is.'
+  //   },
+  //   {
+  //     id: '567',
+  //     user: 'test3',
+  //     comment: 'I dont know what a for loop is.'
+  //   },
+  //   {
+  //     id: '678',
+  //     user: 'test4',
+  //     comment: 'It is a loop.'
+  //   }
+  // ]
 }
 
 export const newQuestionsReducer = (state = initialState, action) => {
@@ -124,11 +127,14 @@ export const newQuestionsReducer = (state = initialState, action) => {
         }
       
     }else if (action.type === actions.DELETE_COMMENT) {
-      console.log(state.answers.filter(item => item.id !== action.answerid))
-      let filteredAnswer = state.answers.filter(item => item.id !== action.answerid)
+      let filteredAnswer = state.answers.filter(item => item.id !== action.answerid);
       return {...state, answers : filteredAnswer}
-    }
-  
 
+    }else if (action.type === actions.FETCH_QUESTIONS_SUCCESS){
+      return {...state}
+    }else if (action.type === actions.FETCH_ANSWERS_SUCCESS){
+      return
+        Object.assign({}, state, {answers : action.answers})
+    }
   return state
 }

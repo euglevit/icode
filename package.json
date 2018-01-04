@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.2.0",
@@ -10,7 +11,9 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "save": "^2.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -20,5 +23,17 @@
   },
   "devDependencies": {
     "redux-logger": "^3.0.6"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/euglevit/icode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/euglevit/icode/issues"
+  },
+  "homepage": "https://github.com/euglevit/icode#readme"
 }

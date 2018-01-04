@@ -6,6 +6,7 @@ import Questions from './Questions';
 import Answers from './Answers';
 import NewQuestion from './NewQuestion';
 import Sidebar from './Sidebar';
+import Test from './Test';
 import './HomePage.css';
 import {BrowserRouter as Router, Route, Links} from 'react-router-dom';
 
@@ -22,6 +23,7 @@ export default function HomePage(){
         <div className='main-content'>
           {/* <About /> */}
           {/* <Topics /> */}
+          <Test />
           <Route path='/questions/:topic' component={Questions}></Route>
           <Route path='/answers/:question' component={Answers}></Route>
           <Route path='/new' component={NewQuestion}></Route>
