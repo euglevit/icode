@@ -2,75 +2,8 @@ import * as actions from '../actions';
 
 const initialState = {
   questions : [],
-  answers : []
-
-  // questions: [{
-  //     topic: 'javascript',
-  //     id: '1234567',
-  //     user: 'test1',
-  //     question: 'What is javascript',
-  //     date: new Date(),
-  //     comments: [{
-  //         answerid: '123'
-  //       },
-  //       {
-  //         answerid: '234'
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     topic: 'jquery',
-  //     id: '3456789',
-  //     user: 'test5',
-  //     question: 'What is jquery',
-  //     date: new Date(),
-  //     comments: [{
-  //         answerid: '123'
-  //       },
-  //       {
-  //         answerid: '567'
-  //       },
-  //       {
-  //         answerid: '234'
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     topic: 'javascript',
-  //     id: '2345678',
-  //     user: 'test2',
-  //     question: 'What is a for loop',
-  //     date: new Date(),
-  //     comments: [{
-  //         answerid: '567'
-  //       },
-  //       {
-  //         answerid: '678'
-  //       }
-  //     ]
-  //   }
-  // ],
-  // answers: [{
-  //     id: '123',
-  //     user: 'test3',
-  //     comment: 'javascript is a programming language'
-  //   },
-  //   {
-  //     id: '234',
-  //     user: 'test4',
-  //     comment: 'I dont know what javascript is.'
-  //   },
-  //   {
-  //     id: '567',
-  //     user: 'test3',
-  //     comment: 'I dont know what a for loop is.'
-  //   },
-  //   {
-  //     id: '678',
-  //     user: 'test4',
-  //     comment: 'It is a loop.'
-  //   }
-  // ]
+  answers : [],
+  loading : false
 }
 
 export const newQuestionsReducer = (state = initialState, action) => {
@@ -95,7 +28,7 @@ export const newQuestionsReducer = (state = initialState, action) => {
           q.id === action.questionId
             ? {
                 ...q,
-                comments: [...q.comments, {answerid: action.id}],
+                comments: [...q.comments, action.id],
               }
             : q,
       ),
@@ -124,17 +57,55 @@ export const newQuestionsReducer = (state = initialState, action) => {
         }
       })
 
-        }
+    }
       
     }else if (action.type === actions.DELETE_COMMENT) {
       let filteredAnswer = state.answers.filter(item => item.id !== action.answerid);
       return {...state, answers : filteredAnswer}
 
     }else if (action.type === actions.FETCH_QUESTIONS_SUCCESS){
-      return {...state}
+      return {...state, questions : action.questions, loading : false}
+
     }else if (action.type === actions.FETCH_ANSWERS_SUCCESS){
-      return
-        Object.assign({}, state, {answers : action.answers})
+      return {...state, answers : action.answers}
+
+    }else if (action.type === 'FETCH_QUESTION'){
+      return {...state, loading: true}
+
+    }else if (action.type === 'FETCH_ADD_ANSWERS'){
+      return {...state, loading: false}
+
+    }else if (action.type === actions.FETCH_ADD_QUESTIONS_SUCCESS){
+      return Object.assign({}, state, {
+        questions: [...state.questions, {
+          question: action.question.question,
+          topic: action.question.topic,
+          user: action.question.user,
+          date: action.question.date,
+          _id: action.question.id,
+          comments: action.question.comments
+        }]
+      })
+
+    }else if (action.type === actions.FETCH_ADD_ANSWERS_SUCCESS){
+      console.log('res123',action.answer.comment);
+      return {
+        ...state,
+        questions: state.questions.map(
+          q => 
+            q._id === action.id
+              ? {
+                  ...q,
+                  comments: [...q.comments, {_id : action.answer._id, user : action.answer.user, comment : action.answer.comment}],
+                }
+              : q,
+        ),
+        answers: [...state.answers, {
+          _id: action.answer._id,
+          user: action.answer.user,
+          comment: action.answer.comment
+        }]
+      }
     }
   return state
-}
+  }

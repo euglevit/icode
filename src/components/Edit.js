@@ -12,17 +12,14 @@ class Edit extends Component{
   }
   
   editComment(comment,answerid){
-    console.log(comment,answerid);
     this.props.dispatch(editComment(comment,answerid));
   };
   deleteComment(answerid){
-    console.log(answerid);
     this.props.dispatch(deleteComment(answerid));
   };
 
 
   render(){
-    console.log(this.props);
     if(this.props.user === 'user2'){
       return(
         <div className='edit-functions'>

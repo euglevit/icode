@@ -1,5 +1,3 @@
-// import {CLIENT_ORIGIN} from '../config'
-// import axios from 'axios';
 
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:8080';
 
@@ -58,6 +56,24 @@ export function fetchAnswersSuccess(answers){
   return{
     type : FETCH_ANSWERS_SUCCESS,
     answers
+    
+  }
+}
+
+export const FETCH_ADD_QUESTIONS_SUCCESS = 'FETCH ADD QUESTIONS SUCCESS';
+export const fetchAddQuestionsSuccess = (question) => {
+  return{
+    type : FETCH_ADD_QUESTIONS_SUCCESS,
+    question
+  }
+}
+
+export const FETCH_ADD_ANSWERS_SUCCESS = 'FETCH ADD ANSWERS SUCCESS';
+export const fetchAddAnswersSuccess = (answer,id) => {
+  return{
+    type : FETCH_ADD_ANSWERS_SUCCESS,
+    answer,
+    id
   }
 }
 
@@ -70,23 +86,81 @@ export const fetchAnswers = () => dispatch => {
     return res.json();
   })
   .then(answers => {
-    answers = {answers};
     dispatch(fetchAnswersSuccess(answers));
   })
 }
 
 export const fetchQuestions = () => dispatch => {
-
+  dispatch({type:'FETCH_QUESTION'})
   fetch(`${CLIENT_ORIGIN}`).then(res => {
     if(!res.ok) {
       return Promise.reject(res.statusText);
     }
-    // console.log('res123', res.json());
     return res.json();
     })
     .then(questions => {
-      questions = {questions};
-      console.log('res123', questions);
       dispatch(fetchQuestionsSuccess(questions));
     })
+}
+
+export const fetchAddQuestions = (pass) => dispatch => {
+  pass = JSON.stringify(pass);
+  fetch(`${CLIENT_ORIGIN}/new`, {
+    method : 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Origin': '*'    
+    },
+    body: pass
+  }).then(res => {
+    if(!res.ok) {
+      if (
+      res.headers.has('content-type') &&
+      res.headers
+          .get('content-type')
+          .startsWith('application/json')
+      ){
+        return res.json().then(err => Promise.reject(err));
+      }
+      return Promise.reject(res.statusText);
+    }
+    console.log('res123',res);
+    return res.json();     
+    
+  })
+  .then(question => {
+    console.log('res123',question);
+    dispatch(fetchAddQuestionsSuccess(question));
+  })
+}
+
+export const fetchAddAnswers = (pass,id) => dispatch => {
+  dispatch({type:'FETCH_ADD_ANSWERS'});
+  pass = JSON.stringify(pass);
+  fetch(`${CLIENT_ORIGIN}/answers/${id}`, {
+    method : 'POST',
+    headers : {
+      'Content-Type' : 'application/json',
+      'Access-Control-Origin' : '*'
+    },
+    body : pass
+  }).then(res => {
+    if(!res.ok) {
+      if (
+        res.headers.has('content-type') &&
+        res.headers
+          .get('content-type')
+          .startsWith('application/json')
+      ){
+        return res.json().then(err => Promise.reject(err));
+      }
+      return Promise.reject(res.statusText);
+    }
+    console.log('res123',res);
+    return res.json();
+  })
+  .then(answer => {
+    console.log('res123',answer)
+    dispatch(fetchAddAnswersSuccess(answer,id));
+  })
 }

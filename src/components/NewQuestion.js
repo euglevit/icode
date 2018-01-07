@@ -1,17 +1,14 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {addQuestion}from '../actions/index';
+import {addQuestion,fetchAddQuestions}from '../actions/index';
 import {Form, FormControl, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import './NewQuestion.css';
 
 class NewQuestion extends Component{
-  // handleClick(event){
-  //   console.log('this click was handled');
-  //   console.log(this);
-  // }
-  addQuestion(question,topic,user,date,id,comments){
-    this.props.dispatch(addQuestion(question,topic,user,date,id,comments));
+
+  addQuestion(question1,topic1,user1,date1,id1,comments1){
+    this.props.dispatch(fetchAddQuestions({"question" : question1, "user" : user1, "topic" : topic1})); 
   };
 
 

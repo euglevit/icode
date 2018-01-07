@@ -4,26 +4,43 @@ import {fetchQuestions,fetchAnswers} from '../actions/index';
 
 class Test extends Component{
 
-  componentDidMount() {
-    console.log('yo yo yo',this);
-    
+  constructor(...args) {
+    super(...args);
+
+    this.state = {loading : true};
+  }
+  componentDidMount(){
+    this.fetchQuestions()
+
+  }
+  fetchQuestions = () => {
     this.props.dispatch(fetchQuestions());
     this.props.dispatch(fetchAnswers());
-}
-
+  } 
 
   render()  {
+    console.log('res123', this);
+    if(this.props.loading){
+      return <h1>loading</h1>
+    }
     return(
-      <h1>hey</h1>
+      <div>{this.props.questions.map(question => (
+        <h1 key={question._id}>{question.question}</h1>
+      ))}</div>
     )
 
   }
+}
+
+Test.defaultProps = {
+  questions : []
 }
 
 const mapStateToProps = state => {
   return{
     questions: state.questions,
     answers: state.answers,
+    loading : state.loading
   };
 };
 

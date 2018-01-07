@@ -17,13 +17,13 @@ class Questions extends Component {
       if(thisTopic === question.topic){
         return(
           <div onClick={(event) => {
-            this.props.history.push(`/answers/${question.id}`)
+            this.props.history.push(`/answers/${question._id}`)
             }} 
             className='total-question'>
               <li className='list-group-item' key={question.id}><span className='asked-question'><p>{question.question}</p></span><span className="badge">{question.comments.length} comments</span><UserTag 
               user={question.user}
-              date={question.date.toLocaleDateString()}
-              time={question.date.toLocaleTimeString()}
+              date={new Date(question.date).toLocaleDateString()}
+              time={new Date(question.date).toLocaleTimeString()}
               /></li>
           </div>
 
@@ -42,7 +42,6 @@ class Questions extends Component {
         Ajax: 'https://static.hltv.org/images/team/logo/7558',
         Git: 'https://avatars1.githubusercontent.com/u/18133?s=400&v=4'
       }
-      console.log('yes',pic.Javascript);
       if(this.props.match.params.topic === 'Javascript'){
         return pic.Javascript;
       }else if(this.props.match.params.topic === 'jQuery'){

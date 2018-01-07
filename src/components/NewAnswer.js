@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {addAnswer} from '../actions/index';
+import {addAnswer, fetchAddAnswers, fetchAnswers} from '../actions/index';
 import {Form, FormControl, Button, Collapse} from 'react-bootstrap';
 import './NewAnswer.css';
 
@@ -8,13 +8,14 @@ class NewAnswer extends Component{
   constructor(...args) {
     super(...args);
 
-    this.state = {};
+    this.state = {loading: true};
   }
 
-  addAnswer(id,user,comment,questionId){
-    this.props.dispatch(addAnswer(id,user,comment,questionId));
+  addAnswer(id1,user1,comment1,questionId1){
+    this.props.dispatch(fetchAddAnswers({"comment" : comment1,"user" : user1},questionId1));
+    // this.props.dispatch(fetchAnswers());
+    // this.props.dispatch(addAnswer(id1,user1,comment1,questionId1));
   }
-
   render(){
     console.log('Answer',this.props.questionId);
     return(
@@ -30,7 +31,7 @@ class NewAnswer extends Component{
                 event.preventDefault();
                 event.stopPropagation();
                 let answerArea = document.getElementById('newAnswer').value;
-                this.addAnswer((Math.floor((Math.random()*100000)+1)).toString(),'user2',answerArea,this.props.questionId);
+                this.addAnswer((Math.floor((Math.random()*100000)+1)).toString(),'test5',answerArea,this.props.questionId);
               }}
               className='submitAnswer'>
               Submit
@@ -45,7 +46,8 @@ class NewAnswer extends Component{
 const mapStateToProps = state => {
   return{
     questions: state.questions,
-    answers: state.answers
+    answers: state.answers,
+    loading: state.loading
   };
 };
 
