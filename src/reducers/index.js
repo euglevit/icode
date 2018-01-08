@@ -88,7 +88,6 @@ export const newQuestionsReducer = (state = initialState, action) => {
       })
 
     }else if (action.type === actions.FETCH_ADD_ANSWERS_SUCCESS){
-      console.log('res123',action.answer.comment);
       return {
         ...state,
         questions: state.questions.map(
@@ -105,6 +104,48 @@ export const newQuestionsReducer = (state = initialState, action) => {
           user: action.answer.user,
           comment: action.answer.comment
         }]
+      }
+    }else if (action.type === actions.FETCH_DELETE_ANSWERS_SUCCESS){
+      let filteredQuestion = state.questions.map(question => {
+        if(question._id === action.id){
+          question.comments = question.comments.filter(item => item._id !== action.answers._id);
+          return question
+          }
+        return question;
+        });
+      let filteredAnswer = state.answers.filter(item => item._id !== action.answers._id);
+      return {...state, answers : filteredAnswer, questions : filteredQuestion}
+
+    }else if (action.type === actions.FETCH_UPDATE_ANSWERS_SUCCESS){
+      return {
+        ...state,
+        questions: state.questions.map(item => {
+          if(item._id === action.id){
+            return {
+              ...item,
+              comments: item.comments.map((comment, index) => {
+              if(comment._id === action.answer._id){
+                const myNewComment = {...comment, comment : action.answer.comment}
+                return myNewComment
+              }
+              return comment
+            })
+          }
+        }
+          return item
+        }),
+        answers: state.answers.map((item,index) => {
+          if(item._id === action.answer._id){
+            item.comment = action.answer.comment;
+            console.log(item);
+            return item;
+          }
+          return {
+            ...item,
+            ...action.item
+          }
+        })
+  
       }
     }
   return state

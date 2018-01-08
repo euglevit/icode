@@ -1,51 +1,56 @@
 import React,{Component} from 'react';
 import {Button,Collapse} from 'react-bootstrap';
 import EditText from './EditText';
-import {editComment,deleteComment} from '../actions/index';
+import {editComment,deleteComment,fetchDeleteAnswers,fetchUpdateAnswers} from '../actions/index';
 import {connect} from 'react-redux';
 
 class Edit extends Component{
   constructor(...args) {
     super(...args);
 
-    this.state = {};
+    this.state = {textAreaValue : ''};
+    this.textArea;
   }
   
-  editComment(comment,answerid){
-    this.props.dispatch(editComment(comment,answerid));
+  editComment(comment,answerid,questionid){
+    // this.props.dispatch(editComment(comment,answerid));
+    console.log(comment);
+    this.props.dispatch(fetchUpdateAnswers({"comment" : comment, "id" : answerid},questionid))
   };
-  deleteComment(answerid){
-    this.props.dispatch(deleteComment(answerid));
+  deleteComment(answerid,questionid){
+    // this.props.dispatch(fetchDeleteAnswers())
+    this.props.dispatch(fetchDeleteAnswers({"id" : answerid},questionid));
   };
 
 
   render(){
-    if(this.props.user === 'user2'){
+    if(this.props.user === 'test5'){
       return(
         <div className='edit-functions'>
           <Button onClick={() => this.setState({ open: !this.state.open })}
-          type="button" class="btn btn-default" aria-label="Left Align">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          type="button" className="btn btn-default" aria-label="Left Align">
+            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
           </Button>
           <Button onClick={(event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.deleteComment(this.props.keys);
+            this.deleteComment(this.props.keys,this.props.id);
           }}
-          type="button" class="btn btn-default" aria-label="Left Align">
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          type="button" className="btn btn-default" aria-label="Left Align">
+            <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
           </Button>
           <div>
             <Collapse in={this.state.open}>
               <div>
-                <textarea id='question-ask' placeholder={this.props.comment}></textarea>
+                <textarea ref={ref => this.textArea = ref} value={this.state.textAreaValue} onChange={e => this.setState({textAreaValue : e.target.value})} id='question-ask' placeholder={this.props.comment}></textarea>
                 <button className='cancel-edit'>Cancel</button>
                 <button className='submit-edit' onClick={(event) => {
-                  let commentArea = document.getElementById('question-ask').value;
-                  event.preventDefault();
-                  event.stopPropagation();
-                  console.log(this);
-                  this.editComment(commentArea,this.props.keys);
+                  // let commentArea = document.getElementById(`question-ask[keys=${textArea}]`);   
+                  // console.log(document.getElementById(`question-ask[keys=${this.props.keys}]`))               
+                  // event.preventDefault();
+                  // event.stopPropagation();
+                  // console.log(this,commentArea);
+                  this.editComment(this.state.textAreaValue, this.props.keys, this.props.id);
                 }}>Submit</button>
               </div>
             </Collapse>

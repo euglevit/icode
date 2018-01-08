@@ -77,6 +77,24 @@ export const fetchAddAnswersSuccess = (answer,id) => {
   }
 }
 
+export const FETCH_DELETE_ANSWERS_SUCCESS = 'FETCH DELETE ANSWERS SUCCESS';
+export const fetchDeleteAnswersSuccess = (answers,id) => {
+  return{
+    type : FETCH_DELETE_ANSWERS_SUCCESS,
+    answers,
+    id
+  }
+}
+
+export const FETCH_UPDATE_ANSWERS_SUCCESS = 'FETCH UPDATE ANSWERS SUCCESS';
+export const fetchUpdateAnswersSuccess = (answer,id) => {
+  return{
+    type : FETCH_UPDATE_ANSWERS_SUCCESS,
+    answer,
+    id
+  }
+}
+
 export const fetchAnswers = () => dispatch => {
   fetch(`${CLIENT_ORIGIN}/answers`).then(res => {
     if(!res.ok) {
@@ -124,12 +142,9 @@ export const fetchAddQuestions = (pass) => dispatch => {
       }
       return Promise.reject(res.statusText);
     }
-    console.log('res123',res);
     return res.json();     
-    
   })
   .then(question => {
-    console.log('res123',question);
     dispatch(fetchAddQuestionsSuccess(question));
   })
 }
@@ -156,11 +171,51 @@ export const fetchAddAnswers = (pass,id) => dispatch => {
       }
       return Promise.reject(res.statusText);
     }
-    console.log('res123',res);
     return res.json();
   })
   .then(answer => {
-    console.log('res123',answer)
     dispatch(fetchAddAnswersSuccess(answer,id));
+  })
+}
+
+export const fetchDeleteAnswers = (pass,id) => dispatch => {
+  dispatch({type:'FETCH_DELETE_ANSWERS'});
+  pass = JSON.stringify(pass);
+  fetch(`${CLIENT_ORIGIN}/answers/${id}`, {
+    method: 'DELETE',
+    headers : {
+      'Content-Type' : 'application/json',
+      'Access-Control-Allow-Origin' : '*'
+    },
+    body : pass
+  }).then(res => {
+    return res.json();
+  })
+  .then(answer => {
+    dispatch(fetchDeleteAnswersSuccess(answer,id));
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+}
+
+export const fetchUpdateAnswers = (pass,id) => dispatch => {
+  dispatch({type:'FETCH_UPDATE_ANSWERS'});
+  pass = JSON.stringify(pass);
+  fetch(`${CLIENT_ORIGIN}/answers/${id}`, {
+    method : 'PUT',
+    headers : {
+      'Content-Type' : 'application/json',
+      'Access-Control-Allow-Origin' : '*'
+    },
+    body : pass
+  }).then(res => {
+    return res.json();
+  })
+  .then(answer => {
+    dispatch(fetchUpdateAnswersSuccess(answer,id));
+  })
+  .catch((error) => {
+    console.log(error);
   })
 }

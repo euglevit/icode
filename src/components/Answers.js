@@ -50,7 +50,7 @@ class Answers extends Component{
                   date={new Date(question.date).toLocaleDateString()}
                   time={new Date(question.date).toLocaleTimeString()}
                   />
-                  <Edit user={comment.user} keys={comment._id} comment={comment.comment}/>
+                  <Edit user={comment.user} keys={comment._id} id={question._id} comment={comment.comment}/>
                 </li>
               )
             }else{
