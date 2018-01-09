@@ -21,7 +21,7 @@ class UserTag extends Component{
 
 const mapStateToProps = state => {
   return{
-    questions: state.questions,
+    questions: state.newQuestionsReducer.questions,
     answers: state.answers
   };
 };

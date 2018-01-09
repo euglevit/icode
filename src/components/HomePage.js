@@ -6,7 +6,10 @@ import Questions from './Questions';
 import Answers from './Answers';
 import NewQuestion from './NewQuestion';
 import Sidebar from './Sidebar';
+import LandingPage from './LandingPage.js';
 import Test from './Test';
+import RegistrationPage from './RegistrationPage';
+import RegistrationForm from './RegistrationForm';
 import './HomePage.css';
 import {connect} from 'react-redux';
 import {fetchQuestions,fetchAnswers} from '../actions/index';
@@ -20,7 +23,7 @@ class HomePage extends Component{
 
     this.state = {loading : true};
   }
-  
+
   componentDidMount(){
     this.fetchQuestions()
   }
@@ -31,7 +34,6 @@ class HomePage extends Component{
   } 
 
   render(){
-    console.log(this.props)
     return(
       <div className='wrapper'>
           <NavBar />
@@ -39,6 +41,8 @@ class HomePage extends Component{
             <Sidebar />
           </div>
           <div className='main-content'>
+            <LandingPage />
+            <Route exact path="/register" component={RegistrationPage} />
             <Route exact path='/questions/:topic' component={Questions}></Route>
             <Route path='/answers/:question' component={Answers}></Route>
             <Route path='/new' component={NewQuestion}></Route>
@@ -51,8 +55,8 @@ class HomePage extends Component{
 const mapStateToProps = state => {
   return{
     questions: state.questions,
-    answers: state.answers,
-    loading : state.loading
+    answers: state.newQuestionsReducer.answers,
+    loading : state.newQuestionsReducer.loading
   };
 };
 

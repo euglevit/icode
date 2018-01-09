@@ -41,7 +41,7 @@ class NewQuestion extends Component{
               let questionTopic = questionTopicSelected[questionTopicIndex];
               let newDate = new Date();
               let newId = (Math.floor((Math.random()*100000)+1)).toString();
-              this.addQuestion(questionArea,questionTopic.id,'user2',newDate,newId,[]);
+              this.addQuestion(questionArea,questionTopic.id,this.props.user,newDate,newId,[]);
               this.props.history.push(`/questions/${questionTopic.value}`)
             }}
             className='submit-question'>
@@ -56,8 +56,9 @@ class NewQuestion extends Component{
 
 const mapStateToProps = state => {
   return{
-    questions: state.questions,
-    answers: state.answers
+    questions: state.newQuestionsReducer.questions,
+    answers: state.newQuestionsReducer.answers,
+    user: state.auth.currentUser.username
   };
 };
 

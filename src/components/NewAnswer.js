@@ -45,9 +45,9 @@ class NewAnswer extends Component{
 }
 const mapStateToProps = state => {
   return{
-    questions: state.questions,
-    answers: state.answers,
-    loading: state.loading
+    questions: state.newQuestionsReducer.questions,
+    answers: state.newQuestionsReducer.answers,
+    loading: state.newQuestionsReducer.loading
   };
 };
 

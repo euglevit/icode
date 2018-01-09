@@ -7,7 +7,6 @@ const initialState = {
 }
 
 export const newQuestionsReducer = (state = initialState, action) => {
-  console.log('using reducer', state);
   if (action.type === actions.ADD_QUESTION) {
     return Object.assign({}, state, {
       questions: [...state.questions, {

@@ -2,7 +2,7 @@ import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import {registerUser} from '../actions/users';
 import {login} from '../actions/auth';
-import Input from './input';
+import Input from './Input';
 import {required, nonEmpty, matches, length, isTrimmed} from '../validators';
 
 export class RegistrationForm extends React.Component {
@@ -15,7 +15,9 @@ export class RegistrationForm extends React.Component {
     }
 
     render() {
+        console.log('sup');
         return (
+            <div>
             <form
                 className="login-form"
                 onSubmit={this.props.handleSubmit(values =>
@@ -37,7 +39,7 @@ export class RegistrationForm extends React.Component {
                     component={Input}
                     type="password"
                     name="password"
-                    validate={[required, length({min: 10, max: 72}), isTrimmed]}
+                    validate={[required, length({min: 8, max: 72}), isTrimmed]}
                 />
                 <label htmlFor="passwordConfirm">Confirm password</label>
                 <Field
@@ -52,6 +54,7 @@ export class RegistrationForm extends React.Component {
                     Register
                 </button>
             </form>
+            </div>
         );
     }
 }
@@ -61,15 +64,3 @@ export default reduxForm({
     onSubmitFail: (errors, dispatch) =>
         dispatch(focus('registration', Object.keys(errors)[0]))
 })(RegistrationForm);
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About

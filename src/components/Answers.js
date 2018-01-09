@@ -42,7 +42,7 @@ class Answers extends Component{
     return this.props.questions.map((question) => {
       if(thisQuestion === question._id){
         return question.comments.map((comment) => {
-          if(question.user === comment.user){
+          if(this.props.user === comment.user){
               return (
                 <li className={`list-group-item comment`} id={`a${comment._id}`}><p>{comment.comment}</p>
                   <UserTag 
@@ -112,8 +112,9 @@ class Answers extends Component{
 }
 const mapStateToProps = state => {
   return{
-    questions: state.questions,
-    answers: state.answers
+    questions: state.newQuestionsReducer.questions,
+    answers: state.newQuestionsReducer.answers,
+    user: state.auth.currentUser.username
   };
 };
 export default withRouter(connect(mapStateToProps)(Answers));

@@ -5,9 +5,15 @@ import UserTag from './UserTag';
 import {connect} from 'react-redux';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 import './Questions.css';
+import { fetchProtectedData } from '../actions/protected-data';
 
 
 class Questions extends Component {
+  constructor(...args) {
+    super(...args);
+
+    this.state = {loading : true};
+  }
 
   createList() {
     let thisTopic = this.props.match.params.topic.toLowerCase();
@@ -30,6 +36,14 @@ class Questions extends Component {
         )
       }
     })
+  }
+
+  componentDidMount() {
+    this.fetchProtectedData();
+  }
+
+  fetchProtectedData = () => {
+    this.props.dispatch(fetchProtectedData());
   }
 
   choosePicture() {
@@ -77,8 +91,9 @@ class Questions extends Component {
 }
 const mapStateToProps = state => {
   return{
-    questions: state.questions,
-    answers: state.answers
+    questions: state.newQuestionsReducer.questions,
+    answers: state.newQuestionsReducer.answers,
+    loading : state.newQuestionsReducer.loading
   };
 };
 
