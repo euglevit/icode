@@ -17,7 +17,7 @@ export const fetchProtectedDataError = error => ({
 export const fetchProtectedData = () => (dispatch, getState) => {
     dispatch({type:'FETCH_PROTECTED'})
     const authToken = getState().auth.authToken;
-    console.log('res123',getState());
+    console.log('res123',authToken);
     return fetch(`${API_BASE_URL}/protected`, {
         method: 'GET',
         headers: {

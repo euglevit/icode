@@ -24,7 +24,7 @@ class Edit extends Component{
 
 
   render(){
-    if(this.props.user === 'test5'){
+    console.log('res123',this);
       return(
         <div className='edit-functions'>
           <Button onClick={() => this.setState({ open: !this.state.open })}
@@ -42,7 +42,7 @@ class Edit extends Component{
           <div>
             <Collapse in={this.state.open}>
               <div>
-                <textarea ref={ref => this.textArea = ref} value={this.state.textAreaValue} onChange={e => this.setState({textAreaValue : e.target.value})} id='question-ask' placeholder={this.props.comment}></textarea>
+                <textarea ref={ref => this.textArea = ref} defaultValue={this.props.comment} onChange={e => this.setState({textAreaValue : e.target.value})} id='question-ask'></textarea>
                 <button className='cancel-edit'>Cancel</button>
                 <button className='submit-edit' onClick={(event) => {
                   // let commentArea = document.getElementById(`question-ask[keys=${textArea}]`);   
@@ -57,16 +57,15 @@ class Edit extends Component{
           </div>
         </div>
       )
-    }else{
-      return(<div></div>)
     }
-  }
+  
 }
 
 const mapStateToProps = state => {
   return{
     questions: state.newQuestionsReducer.questions,
-    answers: state.answers
+    answers: state.newQuestionsReducer.answers
+    // user: state.auth.currentUser.username
   };
 };
 

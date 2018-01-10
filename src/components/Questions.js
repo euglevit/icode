@@ -72,7 +72,10 @@ class Questions extends Component {
     }
     
   
-    render() {
+  render() {
+    if(this.props.loading){
+      return <h1>loading</h1>
+    }
     return(
       <div>
         <div className='topic-header-wrapper'>
@@ -86,7 +89,7 @@ class Questions extends Component {
         <Route path='/answers/:question' component={Answers}></Route>
       </div>
     )
-}
+  }   
   
 }
 const mapStateToProps = state => {

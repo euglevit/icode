@@ -12,6 +12,7 @@ import RegistrationPage from './RegistrationPage';
 import RegistrationForm from './RegistrationForm';
 import './HomePage.css';
 import {connect} from 'react-redux';
+import {refreshAuthToken} from '../actions/auth'
 import {fetchQuestions,fetchAnswers} from '../actions/index';
 import {Router, Route, Links, withRouter} from 'react-router-dom';
 
@@ -24,6 +25,31 @@ class HomePage extends Component{
     this.state = {loading : true};
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.loggedIn && !this.props.loggedIn) {
+        // When we are logged in, refresh the auth token periodically
+        this.startPeriodicRefresh();
+    } else if (!nextProps.loggedIn && this.props.loggedIn) {
+        // Stop refreshing when we log out
+        this.stopPeriodicRefresh();
+    }
+  }
+  componentWillUnmount() {
+    this.stopPeriodicRefresh();
+  }
+  startPeriodicRefresh() {
+    this.refreshInterval = setInterval(
+        () => this.props.dispatch(refreshAuthToken()),
+        60 * 60 * 1000 // One hour
+    );
+  }
+  stopPeriodicRefresh() {
+    if (!this.refreshInterval) {
+        return;
+    }
+
+    clearInterval(this.refreshInterval);
+  }
   componentDidMount(){
     this.fetchQuestions()
   }
@@ -56,7 +82,9 @@ const mapStateToProps = state => {
   return{
     questions: state.questions,
     answers: state.newQuestionsReducer.answers,
-    loading : state.newQuestionsReducer.loading
+    loading : state.newQuestionsReducer.loading,
+    hasAuthToken: state.auth.authToken !== null,
+    loggedIn: state.auth.currentUser !== null
   };
 };
 

@@ -121,13 +121,15 @@ export const fetchQuestions = () => dispatch => {
     })
 }
 
-export const fetchAddQuestions = (pass) => dispatch => {
+export const fetchAddQuestions = (pass) => (dispatch,getState) => {
   pass = JSON.stringify(pass);
+  const authToken = getState().auth.authToken;
   fetch(`${CLIENT_ORIGIN}/new`, {
     method : 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Origin': '*'    
+      'Access-Control-Origin': '*',
+      Authorization: `Bearer ${authToken}`
     },
     body: pass
   }).then(res => {
@@ -149,14 +151,16 @@ export const fetchAddQuestions = (pass) => dispatch => {
   })
 }
 
-export const fetchAddAnswers = (pass,id) => dispatch => {
+export const fetchAddAnswers = (pass,id) => (dispatch,getState) => {
   dispatch({type:'FETCH_ADD_ANSWERS'});
   pass = JSON.stringify(pass);
+  const authToken = getState().auth.authToken;
   fetch(`${CLIENT_ORIGIN}/answers/${id}`, {
     method : 'POST',
     headers : {
       'Content-Type' : 'application/json',
-      'Access-Control-Origin' : '*'
+      'Access-Control-Origin' : '*',
+      Authorization : `Bearer ${authToken}`
     },
     body : pass
   }).then(res => {
@@ -199,14 +203,16 @@ export const fetchDeleteAnswers = (pass,id) => dispatch => {
   })
 }
 
-export const fetchUpdateAnswers = (pass,id) => dispatch => {
+export const fetchUpdateAnswers = (pass,id) => (dispatch,getState) => {
   dispatch({type:'FETCH_UPDATE_ANSWERS'});
   pass = JSON.stringify(pass);
+  const authToken = getState().auth.authToken;
   fetch(`${CLIENT_ORIGIN}/answers/${id}`, {
     method : 'PUT',
     headers : {
       'Content-Type' : 'application/json',
-      'Access-Control-Allow-Origin' : '*'
+      'Access-Control-Allow-Origin' : '*',
+      Authorization : `Bearer ${authToken}`
     },
     body : pass
   }).then(res => {

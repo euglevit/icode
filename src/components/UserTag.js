@@ -22,7 +22,7 @@ class UserTag extends Component{
 const mapStateToProps = state => {
   return{
     questions: state.newQuestionsReducer.questions,
-    answers: state.answers
+    answers: state.newQuestionsReducer.answers
   };
 };
 

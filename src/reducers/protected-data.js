@@ -16,7 +16,7 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {
           error: action.error
       });
-  }else if (action.type === actions.FETCH_PROTECTED) {
+  }else if (action.type === "FETCH_PROTECTED") {
     return {...state, loading : true}
   }
   return state;

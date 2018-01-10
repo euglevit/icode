@@ -13,36 +13,30 @@ import './Answers.css';
 
 class Answers extends Component{
 
-  // constructor(props){
-  //   super(props);
+  constructor(props){
+    super(props);
 
+    this.state = store.getState();
+    };
+  
+
+  // componentWillUpdate(nextProps,nextState){
   //   this.state = store.getState();
-
-
   //   store.subscribe(() => {
-  //   console.log('res123', this);
-  //   this.setState(store.getState());
+  //     this.setState(store.getState());
   //   });
   // }
 
-  componentWillUpdate(nextProps,nextState){
-    console.log('yobe');
-    this.state = store.getState();
-    console.log('res123',this);
-    store.subscribe(() => {
-      this.setState(store.getState());
-    });
-  }
-
   createList(){
     let thisQuestion = this.props.match.params.question;
-    console.log(thisQuestion);
+    let user = this.props.user;
     
   
-    return this.props.questions.map((question) => {
+    return this.props.questions.map(question => {
       if(thisQuestion === question._id){
-        return question.comments.map((comment) => {
-          if(this.props.user === comment.user){
+        console.log('res123',this);
+        return question.comments.map(comment => {
+          if(user === comment.user){
               return (
                 <li className={`list-group-item comment`} id={`a${comment._id}`}><p>{comment.comment}</p>
                   <UserTag 
