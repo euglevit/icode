@@ -3,7 +3,6 @@ const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:8080';
 
 export const ADD_QUESTION = 'ADD QUESTION';
 export const addQuestion = (question,topic,user,date,id, comments) => {
-  console.log('addquestion', question);
   return{
   type: ADD_QUESTION,
   question,
@@ -43,7 +42,7 @@ export const deleteComment = (answerid) => {
   }
 }
 
-export const FETCH_QUESTIONS_SUCCESS = 'FETCH QUESTIONS';
+export const FETCH_QUESTIONS_SUCCESS = 'FETCH QUESTIONS SUCCESS';
 export function fetchQuestionsSuccess(questions){
   return{
     type : FETCH_QUESTIONS_SUCCESS,
@@ -69,7 +68,7 @@ export const fetchAddQuestionsSuccess = (question) => {
 }
 
 export const FETCH_ADD_ANSWERS_SUCCESS = 'FETCH ADD ANSWERS SUCCESS';
-export const fetchAddAnswersSuccess = (answer,id) => {
+export const fetchAddAnswersSuccess = (answer,id,date) => {
   return{
     type : FETCH_ADD_ANSWERS_SUCCESS,
     answer,
@@ -87,10 +86,19 @@ export const fetchDeleteAnswersSuccess = (answers,id) => {
 }
 
 export const FETCH_UPDATE_ANSWERS_SUCCESS = 'FETCH UPDATE ANSWERS SUCCESS';
-export const fetchUpdateAnswersSuccess = (answer,id) => {
+export const fetchUpdateAnswersSuccess = (answer,id,date) => {
   return{
     type : FETCH_UPDATE_ANSWERS_SUCCESS,
     answer,
+    id
+  }
+}
+
+export const FETCH_UPDATE_QUESTIONS_SUCCESS = 'FETCH UPDATE QUESTION SUCCESS';
+export const fetchUpdateQuestionSuccess = (question,id,date) => {
+  return{
+    type : FETCH_UPDATE_QUESTIONS_SUCCESS,
+    question,
     id
   }
 }
@@ -178,12 +186,11 @@ export const fetchAddAnswers = (pass,id) => (dispatch,getState) => {
     return res.json();
   })
   .then(answer => {
-    dispatch(fetchAddAnswersSuccess(answer,id));
+    dispatch(fetchAddAnswersSuccess(answer,id,answer.date));
   })
 }
 
 export const fetchDeleteAnswers = (pass,id) => dispatch => {
-  dispatch({type:'FETCH_DELETE_ANSWERS'});
   pass = JSON.stringify(pass);
   fetch(`${CLIENT_ORIGIN}/answers/${id}`, {
     method: 'DELETE',
@@ -207,7 +214,7 @@ export const fetchUpdateAnswers = (pass,id) => (dispatch,getState) => {
   dispatch({type:'FETCH_UPDATE_ANSWERS'});
   pass = JSON.stringify(pass);
   const authToken = getState().auth.authToken;
-  fetch(`${CLIENT_ORIGIN}/answers/${id}`, {
+  fetch(`${CLIENT_ORIGIN}/answers/${id}/a`, {
     method : 'PUT',
     headers : {
       'Content-Type' : 'application/json',
@@ -223,5 +230,28 @@ export const fetchUpdateAnswers = (pass,id) => (dispatch,getState) => {
   })
   .catch((error) => {
     console.log(error);
+  })
+}
+
+export const fetchUpdateQuestion = (pass,id) => (dispatch,getState) => {
+  dispatch({type: 'FETCH_UPDATE_QUESTION'});
+  pass = JSON.stringify(pass);
+  const authToken = getState().auth.authToken;
+  fetch(`${CLIENT_ORIGIN}/answers/${id}/q`, {
+    method : 'PUT',
+    headers : {
+      'Content-Type' : 'application/json',
+      'Access-Control-Allow-Origin' : '*',
+      Authorization : `Bearer ${authToken}`
+    },
+    body : pass
+  }).then(res => {
+    return res.json();
+  })
+  .then(question => {
+    dispatch(fetchUpdateQuestionSuccess(question,id))
+  })
+  .catch((error) => {
+    console.log(error)
   })
 }

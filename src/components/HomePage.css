@@ -2,13 +2,48 @@
   padding-left:0px;
   transition: padding-left .5s;
   height: 100%;
+  background: #f2f2f2;
+  padding-top: 16px;
+  padding-bottom: 40px;
+  grid-area: main;
+  background: url('https://onaircode.com/wp-content/uploads/2017/11/CanvasRenderer-Gradient-Background.jpg');
 }
 
 .wrapper.menuDisplayed .main-content{
-  padding-left: 250px;
   transition: padding-left .5s;
 }
+
 .wrapper{
-  height: 100%;
+  min-height: 100vh;
   white-space: pre-wrap;
+  display: grid;
+  position: relative;
+  /* grid-template-rows: auto [content-top] 1fr [content-bottom] auto [footer-bottom]; */
+  grid-template-columns: [content-start] min-content [mid-content] auto [end-content];
+  grid-template-rows: 80px 2fr 30px;
+  grid-template-areas: 
+  "navbar navbar"
+  "sidebar main"
+  "footer footer";
+
+}
+
+.footer{
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  background-color: black;
+  color: white;
+  grid-area: footer;
+}
+
+.root{
+  width: 100%;
+}
+#root{
+  width: 100%;
+}
+#shadow-root{
+  width: 100%;
 }

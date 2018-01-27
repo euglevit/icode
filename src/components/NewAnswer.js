@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {addAnswer, fetchAddAnswers, fetchAnswers} from '../actions/index';
-import {Form, FormControl, Button, Collapse} from 'react-bootstrap';
+import {fetchAddAnswers} from '../actions/index';
+import {Form, Button} from 'react-bootstrap';
+import store from '../store';
 import './NewAnswer.css';
 
 class NewAnswer extends Component{
@@ -11,34 +12,40 @@ class NewAnswer extends Component{
     this.state = {loading: true};
   }
 
-  addAnswer(id1,user1,comment1,questionId1){
+  componentWillUpdate(nextProps,nextState){
+    this.state = store.getState();
+    store.subscribe(() => {
+      this.setState(store.getState());
+    });
+  }
+
+  addAnswer(user1,comment1,questionId1){
     this.props.dispatch(fetchAddAnswers({"comment" : comment1,"user" : user1},questionId1));
     // this.props.dispatch(fetchAnswers());
-    // this.props.dispatch(addAnswer(id1,user1,comment1,questionId1));
   }
   render(){
-    console.log('Answer',this.props.questionId);
+    let user = ''
+    if(this.state.auth === undefined){
+      user = '';
+    }else(user =  this.state.auth.currentUser.username);
+
     return(
-      <div>
-        <Button onClick={() => this.setState({ open: !this.state.open })}>
-        click
-        </Button>
-        <Collapse in={this.state.open}>
+      <div className='new-answer-button'>
             <Form>
-              <textarea id='newAnswer' placeholder='Enter Comment'></textarea>
+              <div contentEditable='true' id='newAnswer' placeholder='Enter Comment' ref='textarea'></div>
               <Button type='submit'
               onClick= {(event) => {
                 event.preventDefault();
                 event.stopPropagation();
-                let answerArea = document.getElementById('newAnswer').value;
-                this.addAnswer((Math.floor((Math.random()*100000)+1)).toString(),'test5',answerArea,this.props.questionId);
+                let answerArea = this.refs.textarea.innerText;
+                if(answerArea == undefined){
+                  return alert('Please enter text');
+              }else(this.addAnswer(user,this.refs.textarea.innerText,this.props.questionId))
               }}
               className='submitAnswer'>
               Submit
               </Button>
             </Form>
-        </Collapse>
-        
       </div>
     )
   }

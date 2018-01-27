@@ -1,9 +1,8 @@
 import React,{Component} from 'react';
-import Topics from './Topics';
 import Answers from './Answers';
-import UserTag from './UserTag';
+import IndividualQuestion from './IndividualQuestion';
 import {connect} from 'react-redux';
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import {BrowserRouter as Route,Link} from 'react-router-dom';
 import './Questions.css';
 import { fetchProtectedData } from '../actions/protected-data';
 
@@ -17,25 +16,27 @@ class Questions extends Component {
 
   createList() {
     let thisTopic = this.props.match.params.topic.toLowerCase();
+    
 
     
-    return this.props.questions.map((question) => {
+    return this.props.questions.reverse().map((question) => {
       if(thisTopic === question.topic){
         return(
-          <div onClick={(event) => {
-            this.props.history.push(`/answers/${question._id}`)
-            }} 
-            className='total-question'>
-              <li className='list-group-item' key={question.id}><span className='asked-question'><p>{question.question}</p></span><span className="badge">{question.comments.length} comments</span><UserTag 
-              user={question.user}
-              date={new Date(question.date).toLocaleDateString()}
-              time={new Date(question.date).toLocaleTimeString()}
-              /></li>
-          </div>
-
+        <IndividualQuestion 
+        id={question._id}
+        user={question.user}
+        date={new Date(question.date).toLocaleDateString()}
+        time={new Date(question.date).toLocaleTimeString()}
+        question={question.question}
+        comments={question.comments}
+        history={this.props.history}
+          />
         )
       }
     })
+  }
+  handleClick(event) {
+    event.preventDefault();
   }
 
   componentDidMount() {
@@ -56,47 +57,76 @@ class Questions extends Component {
         Ajax: 'https://static.hltv.org/images/team/logo/7558',
         Git: 'https://avatars1.githubusercontent.com/u/18133?s=400&v=4'
       }
-      if(this.props.match.params.topic === 'Javascript'){
+      if(this.props.match.params.topic.toLowerCase() === 'javascript'){
         return pic.Javascript;
-      }else if(this.props.match.params.topic === 'jQuery'){
+      }else if(this.props.match.params.topic.toLowerCase() === 'jquery'){
         return pic.jQuery;
-      }else if(this.props.match.params.topic === 'Node'){
+      }else if(this.props.match.params.topic.toLowerCase() === 'node'){
         return pic.Node;
-      }else if(this.props.match.params.topic === 'React'){
+      }else if(this.props.match.params.topic.toLowerCase() === 'react'){
         return pic.React;
-      }else if(this.props.match.params.topic === 'Ajax'){
+      }else if(this.props.match.params.topic.toLowerCase() === 'ajax'){
         return pic.Ajax;
-      }else if(this.props.match.params.topic === 'Git'){
+      }else if(this.props.match.params.topic.toLowerCase() === 'git'){
         return pic.Git;
       }
     }
     
   
   render() {
+    
     if(this.props.loading){
-      return <h1>loading</h1>
+      return <div></div>
     }
     return(
-      <div>
-        <div className='topic-header-wrapper'>
-          <div className='topic-header'>
-            <h1>{this.props.match.params.topic}</h1>
-            <img src={this.choosePicture()} height='100' width='120'></img>
-            <button className='navbar-button'><Link to={{pathname: '/new'}}>New Question</Link></button>
+      <div className='outer-padding'>
+        <div>
+          <div className='nav-links'>
+            <Link className='home-link' to={{pathname: `/`}}>Home</Link>
+            <span className='arrows'> >> </span>
+            <Link className='topic-link' to={{pathName: `/topics/${this.props.match.params.topic}`}}>{this.props.match.params.topic}</Link>
           </div>
+          <div className='topic-header-wrapper'>
+            <div className='topic-header'>
+              <h1>{this.props.match.params.topic}</h1>
+              <img alt='topic-pic' src={this.choosePicture()} height='100' width='120'></img>
+    <div>{this.props.loggedIn ? <a onClick={(event => {
+      event.stopPropagation();
+      event.preventDefault();
+      this.props.history.push('/new');
+    })} className='navbar-button'>New Question</a> : <div></div>}</div>
+            </div>
+          </div>
+          <div className='questions-header'>
+          <div className='all-questions-header'>
+            <div className='all-questions-user'>
+              <p>User</p>
+            </div>
+            <div className='all-questions-question'>
+              <p>Questions</p>
+            </div>
+            <div className='all-questions-last-post'>
+              <p>User</p>
+            </div>
+            <div className='all-questions-comment-count'>
+              <p>Count</p>
+            </div>
+          </div>
+          <div className='list-group total-question-ul'>{this.createList()}</div>
+          <Route path='/answers/:question' component={Answers}></Route>
         </div>
-        <h2><ul className='list-group total-question-ul'>{this.createList()}</ul></h2>
-        <Route path='/answers/:question' component={Answers}></Route>
+        </div>
       </div>
+      
     )
-  }   
-  
+  }     
 }
 const mapStateToProps = state => {
   return{
     questions: state.newQuestionsReducer.questions,
     answers: state.newQuestionsReducer.answers,
-    loading : state.newQuestionsReducer.loading
+    loading : state.newQuestionsReducer.loading,
+    loggedIn: state.auth.currentUser !== null
   };
 };
 

@@ -4,17 +4,19 @@ html, body {
 
 #sidebar-wrapper{
   z-index: 1;
-  position: absolute; 
+  /* position: absolute;  */
   width: 0px;
   height: 100%;
   overflow-y: hidden;
   background: #2C3E50;
   opacity: 0.9;
-  transition: width .5s
+  transition: width .5s;
+  display: grid;
+  grid-area: sidebar;
 }
 
 .wrapper.menuDisplayed #sidebar-wrapper{
-  width: 250px;
+  width: 150px;
   transition: width .5s;
 }
 
@@ -27,7 +29,7 @@ html, body {
   color: white;
   padding-left: 0px;
 }
-.topic a{
+.sidebar-topic a{
   color: white;
 }
 .sidebar-nav{

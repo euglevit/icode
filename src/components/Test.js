@@ -19,9 +19,8 @@ class Test extends Component{
   } 
 
   render()  {
-    console.log('res123', this);
     if(this.props.loading){
-      return <h1>loading</h1>
+      return <div></div>
     }
     return(
       <div>{this.props.questions.map(question => (
@@ -39,8 +38,8 @@ Test.defaultProps = {
 const mapStateToProps = state => {
   return{
     questions: state.newQuestionsReducer.questions,
-    answers: state.answers,
-    loading : state.loading
+    answers: state.newQuestionsReducer.answers,
+    loading : state.newQuestionsReducer.loading
   };
 };
 

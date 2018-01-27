@@ -3,7 +3,7 @@ import * as actions from '../actions';
 const initialState = {
   questions : [],
   answers : [],
-  loading : false
+  loading : true
 }
 
 export const newQuestionsReducer = (state = initialState, action) => {
@@ -37,11 +37,7 @@ export const newQuestionsReducer = (state = initialState, action) => {
         comment: action.comment
       }]
     }
-    // console.log('state', state);
-    // return (
-    //   Object.assign({}, state, {
 
-    //   }))
   } else if (action.type === actions.EDIT_COMMENT) {
     return {
       ...state,
@@ -94,14 +90,15 @@ export const newQuestionsReducer = (state = initialState, action) => {
             q._id === action.id
               ? {
                   ...q,
-                  comments: [...q.comments, {_id : action.answer._id, user : action.answer.user, comment : action.answer.comment}],
+                  comments: [...q.comments, {_id : action.answer._id, user : action.answer.user, comment : action.answer.comment, date: action.answer.date}],
                 }
               : q,
         ),
         answers: [...state.answers, {
           _id: action.answer._id,
           user: action.answer.user,
-          comment: action.answer.comment
+          comment: action.answer.comment,
+          date: action.answer.date
         }]
       }
     }else if (action.type === actions.FETCH_DELETE_ANSWERS_SUCCESS){
@@ -136,7 +133,6 @@ export const newQuestionsReducer = (state = initialState, action) => {
         answers: state.answers.map((item,index) => {
           if(item._id === action.answer._id){
             item.comment = action.answer.comment;
-            console.log(item);
             return item;
           }
           return {
@@ -144,8 +140,18 @@ export const newQuestionsReducer = (state = initialState, action) => {
             ...action.item
           }
         })
-  
       }
+    }else if (action.type === actions.FETCH_UPDATE_QUESTIONS_SUCCESS){
+      questions: state.questions.map((item,index) => {
+        if(item._id === action.question._id){
+          item.question = action.question.question;
+          return item;
+        }
+        return {
+          ...item,
+          ...action.item
+        }
+      })
     }
   return state
   }

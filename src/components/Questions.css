@@ -1,19 +1,125 @@
 .total-question-ul{
-  max-width: 500px;
-  margin: auto;
+  min-width: 250px;
+  display: grid;
+  grid-template-rows: 1fr;
+  max-width: 600px;
 }
 .total-question{
-  margin-top: 10px;
   cursor: pointer;
 }
 .asked-question{
   font-size: 13px;
+  flex-wrap: wrap;
 }
 .topic-header{
   margin: auto;
   display: block;
+  margin-bottom: 15px;
 }
 .topic-header-wrapper{
   display: block;
   text-align: center;
+}
+
+.all-questions-header{
+  background-color: #00547A;
+  color: white;
+  text-align: center;
+  display: grid;
+  grid-template-columns: minmax(15%,15%) minmax(50%,50%) minmax(20%,20%) minmax(15%,15%);
+  max-width: 600px;
+  height: 100%;
+
+}
+
+.all-questions-user{}
+
+.all-questions-question{
+  border-top: none
+}
+
+
+.all-questions-last-post{
+  justify-self: center;
+}
+
+.all-questions-comment-count{
+  overflow: hidden;
+}
+
+/* .all-question-comment-count p{
+  text-align: center;
+} */
+
+.all-question-user{
+  background-color: #E9E9E9;
+  margin: 0;
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+  border-top: none;
+  padding-top: 5px;
+}
+
+.all-question-question{
+  border-right: 1px solid gray;
+  border-top: none;
+  width: 100%;
+  padding: 5px;
+}
+
+.all-question-last-post{
+  border-right: 1px solid gray;
+  border-top: none;
+  text-align: center;
+  padding: 5px;
+}
+
+.all-question-comment-count{
+  border-top: none;
+  text-align: center;
+  padding: 5px;
+}
+.total-questions-wrapper{
+  display: grid;
+  border-right: 1px solid gray;
+  max-width: 600px;
+  overflow-wrap: break-word;
+  cursor: pointer;
+  height: 200px;
+  overflow: hidden;
+  grid-template-columns: minmax(15%,15%) minmax(50%,50%) minmax(20%,20%) minmax(15%,15%);
+  border-bottom: 1px solid gray;
+}
+
+.user-picture{
+  margin: auto;
+  display: block;
+}
+.outer-padding{
+  background: white;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 3px;
+}
+
+.questions-header{
+  display: grid;
+  grid-template-rows: 30px 8fr;
+  max-width: 600px;
+  margin: auto
+}
+
+@media screen and (max-width: 365px){
+  .user-picture{
+    height: 36px;
+    width: 36px;
+    margin: auto;
+    
+  }
+  .user-tag p{
+    font-size: 10px;
+  }
 }

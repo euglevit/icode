@@ -1,7 +1,5 @@
 import React,{Component} from 'react';
 import NavBar from './NavBar';
-import About from './About';
-// import Topics from './Topics';
 import Questions from './Questions';
 import Answers from './Answers';
 import NewQuestion from './NewQuestion';
@@ -9,12 +7,11 @@ import Sidebar from './Sidebar';
 import LandingPage from './LandingPage.js';
 import Test from './Test';
 import RegistrationPage from './RegistrationPage';
-import RegistrationForm from './RegistrationForm';
 import './HomePage.css';
 import {connect} from 'react-redux';
 import {refreshAuthToken} from '../actions/auth'
 import {fetchQuestions,fetchAnswers} from '../actions/index';
-import {Router, Route, Links, withRouter} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 
 
 class HomePage extends Component{
@@ -63,15 +60,17 @@ class HomePage extends Component{
     return(
       <div className='wrapper'>
           <NavBar />
-          <div>   
-            <Sidebar />
-          </div>
+          <Sidebar />
           <div className='main-content'>
-            <LandingPage />
-            <Route exact path="/register" component={RegistrationPage} />
-            <Route exact path='/questions/:topic' component={Questions}></Route>
-            <Route path='/answers/:question' component={Answers}></Route>
-            <Route path='/new' component={NewQuestion}></Route>
+            <Route exact path='/' component={LandingPage}/>
+              <Route path='/questions/:topic' component={Questions}/>
+    
+              <Route path="/register" component={RegistrationPage}/>
+              <Route path='/answers/:question' component={Answers}/>
+              <Route path='/new' component={NewQuestion}/>
+          </div>
+          <div className='footer'>
+            <p>euglevit</p>
           </div>
       </div>
     )

@@ -2,7 +2,8 @@ import * as actions from '../actions/protected-data';
 
 const initialState = {
   data: '',
-  error: null
+  error: null,
+  loadin: true
 };
 
 export default function reducer(state = initialState, action) {
@@ -10,14 +11,15 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {
           data: action.data,
           error: null,
-          loading: false
+          loadin: false
+          
       });
   } else if (action.type === actions.FETCH_PROTECTED_DATA_ERROR) {
       return Object.assign({}, state, {
           error: action.error
       });
   }else if (action.type === "FETCH_PROTECTED") {
-    return {...state, loading : true}
+    return {...state, loadin : true}
   }
   return state;
 }

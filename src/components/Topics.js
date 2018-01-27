@@ -7,8 +7,6 @@ export default function Topics(){
   function handleClick(event) {
     
     event.preventDefault();
-    let selectedTopic = event.currentTarget.getAttribute('name');
-    console.log(selectedTopic);
 
   }
   return(

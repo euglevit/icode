@@ -1,24 +1,42 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {addQuestion,fetchAddQuestions}from '../actions/index';
-import {Form, FormControl, Button} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {fetchAddQuestions,fetchQuestions}from '../actions/index';
+import {Button} from 'react-bootstrap';
+import store from '../store';
 import './NewQuestion.css';
 
 class NewQuestion extends Component{
 
-  addQuestion(question1,topic1,user1,date1,id1,comments1){
+  addQuestion(question1,topic1,user1){
     this.props.dispatch(fetchAddQuestions({"question" : question1, "user" : user1, "topic" : topic1})); 
   };
+
+  componentWillUpdate(nextProps,nextState){
+    this.state = store.getState();
+    store.subscribe(() => {
+      this.setState(store.getState());
+    });
+  }
+
+  componentDidMount() {
+    this.fetchProtectedData();
+  }
+
+  fetchProtectedData = () => {
+    this.state = store.getState();
+    this.props.dispatch(fetchQuestions());
+  }
+
 
 
 
     render(){
+
       
     return(
       <div className='new-question-form'>
         <h1>New Question</h1>
-        <Form inline className='newQuestion'>
+        <form inline className='newQuestion'>
           <legend>Topic</legend>
             <select id='selected-topic'> 
               <option id='javascript' value='Javascript'>Javascript</option>
@@ -39,15 +57,17 @@ class NewQuestion extends Component{
               let questionTopicIndex = document.getElementById('selected-topic').selectedIndex
               let questionTopicSelected = document.getElementById('selected-topic').options
               let questionTopic = questionTopicSelected[questionTopicIndex];
-              let newDate = new Date();
-              let newId = (Math.floor((Math.random()*100000)+1)).toString();
-              this.addQuestion(questionArea,questionTopic.id,this.props.user,newDate,newId,[]);
+              if(questionArea == undefined){
+                return alert('Please Enter Text.');
+              }
+              this.addQuestion(questionArea,questionTopic.id,this.state.auth.currentUser.username);
               this.props.history.push(`/questions/${questionTopic.value}`)
+              
             }}
             className='submit-question'>
             Submit Question
             </Button>
-        </Form>
+        </form>
       </div>
     )
   }
@@ -57,8 +77,7 @@ class NewQuestion extends Component{
 const mapStateToProps = state => {
   return{
     questions: state.newQuestionsReducer.questions,
-    answers: state.newQuestionsReducer.answers,
-    user: state.auth.currentUser.username
+    answers: state.newQuestionsReducer.answers
   };
 };
 

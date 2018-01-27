@@ -10,7 +10,9 @@ const initialState = {
     authToken: null, // authToken !== null does not mean it has been validated
     currentUser: null,
     loading: false,
-    error: null
+    error: null,
+    loadin: true
+
 };
 
 export default function reducer(state = initialState, action) {
@@ -29,6 +31,7 @@ export default function reducer(state = initialState, action) {
             error: null
         });
     } else if (action.type === AUTH_SUCCESS) {
+        // window.location.reload();
         return Object.assign({}, state, {
             loading: false,
             currentUser: action.currentUser

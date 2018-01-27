@@ -12,8 +12,15 @@ export function RegistrationPage(props) {
     }
     return (
         <div className="home">
-            <h2>Register for Foo App</h2>
-            <Link to="/">Login</Link>
+
+            <div className='nav-links'>
+                <Link to={{pathname: '/'}} className='home-link glyphicon glyphicon-home'>Home</Link>
+            </div>
+            <h2 className='register-header'>Register for iCode</h2>
+            <div className='banner'>
+                <h2>Welcome To iCode, Where You Can Get Answers To Your Web Development Questions</h2>
+            </div>
+            
             <RegistrationForm />
         </div>
     );
