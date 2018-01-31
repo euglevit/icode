@@ -21,3 +21,6 @@
 .submit-question{
   margin-top: 10px;
 }
+legend{
+  border-bottom: none;
+}

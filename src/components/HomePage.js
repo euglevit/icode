@@ -3,9 +3,8 @@ import NavBar from './NavBar';
 import Questions from './Questions';
 import Answers from './Answers';
 import NewQuestion from './NewQuestion';
-import Sidebar from './Sidebar';
+// import Sidebar from './Sidebar';
 import LandingPage from './LandingPage.js';
-import Test from './Test';
 import RegistrationPage from './RegistrationPage';
 import './HomePage.css';
 import {connect} from 'react-redux';
@@ -51,6 +50,7 @@ class HomePage extends Component{
     this.fetchQuestions()
   }
 
+  //Fetches all Questions and Answers
   fetchQuestions = () => {
     this.props.dispatch(fetchQuestions());
     this.props.dispatch(fetchAnswers());
@@ -60,11 +60,10 @@ class HomePage extends Component{
     return(
       <div className='wrapper'>
           <NavBar />
-          <Sidebar />
+          {/* <Sidebar /> */}
           <div className='main-content'>
             <Route exact path='/' component={LandingPage}/>
               <Route path='/questions/:topic' component={Questions}/>
-    
               <Route path="/register" component={RegistrationPage}/>
               <Route path='/answers/:question' component={Answers}/>
               <Route path='/new' component={NewQuestion}/>

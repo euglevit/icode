@@ -5,6 +5,16 @@
 }
 
 .header-topics{
+  margin: -4px -1px 0;
+  background: #2dbe60;
+  text-transform: uppercase;
+  border-radius: 3px 3px 0 0;
+  padding: 14px 15px 14px 25px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* .header-topics{
   display: flex;
   background-color: #00547A;
   max-width: 600px;  
@@ -13,7 +23,7 @@
   font-size: 12px;
   text-align: center;
   
-}
+} */
 
 .main-table-topics{
   display: flex;
@@ -103,7 +113,7 @@
 }
 
 .topics-description p{
-
+  padding-left: 5px;
 }
 
 .nav-links{
@@ -113,6 +123,7 @@
   font-size: 18px;
   margin-bottom: 10px;
   font-family: 'Open Sans', sans-serif;
+  margin: auto;
 }
 
 @media screen and (max-width: 400px){

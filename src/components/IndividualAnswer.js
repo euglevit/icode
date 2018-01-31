@@ -14,30 +14,23 @@ class IndividualAnswer extends Component{
     };
   }
 
+  //Edits comments
   editComment(comment,answerid,questionid){
     this.props.dispatch(fetchUpdateAnswers({"comment" : comment, "id" : answerid},questionid))
   };
 
+  //Deletes comments
   deleteComment(answerid,questionid){
-    // this.props.dispatch(fetchDeleteAnswers())
     this.props.dispatch(fetchDeleteAnswers({"id" : answerid},questionid));
   };
 
-  
-
-  // componentWillUpdate(nextProps,nextState){
-  //   this.state = store.getState();
-  //   store.subscribe(() => {
-  //     this.setState(store.getState());
-  //   });
-  // }
-
+  //Makes comment editable
   _renderInput(){
     if(this.state.editing){
     return(
       <div className='comment-area'>
       <form id='comment-form'>
-        <div className='answer-area' contentEditable='true' onChange={this._onChange} form='comment-form' autoFocus ref='textarea'>{this.props.comment}</div>
+        <div className='answer-area' contentEditable='true' suppressContentEditableWarning onChange={this._onChange} form='comment-form' autoFocus ref='textarea'>{this.props.comment}</div>
       </form>
       <div className='edit-answer-functions'>
         <a className='submit-answer-button' onClick={this._onSubmit}>Submit</a>
@@ -50,28 +43,32 @@ class IndividualAnswer extends Component{
     )
   }
 
+  //Sets editing to true
   _onClick = () => {
     
     this.setState({ editing: true })
 
   }
 
+  //sets editing to false
   _onCancel = (e) => {
     e.preventDefault()
 
     this.setState({editing: false});
   }
 
+  //Submits edit and sets editing to false.
   _onSubmit = (e) => {
     e.preventDefault()
 
-    if(this.refs.textarea.innerText == ''){
+    if(this.refs.textarea.innerText === ''){
       alert('Please Enter Text.');
     }else{
       this.editComment(this.refs.textarea.innerText, this.props.id, this.props.questionId);
       this.setState({ editing: false })}
   }
 
+  //Sets comment equal to the value of the textarea
   _onChange = e => this.setState({ comment: e.target.value })
 
   render(){

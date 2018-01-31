@@ -4,7 +4,7 @@ import IndividualQuestion from './IndividualQuestion';
 import {connect} from 'react-redux';
 import {BrowserRouter as Route,Link} from 'react-router-dom';
 import './Questions.css';
-import { fetchProtectedData } from '../actions/protected-data';
+import {fetchQuestions} from '../actions/index';
 
 
 class Questions extends Component {
@@ -14,15 +14,17 @@ class Questions extends Component {
     this.state = {loading : true};
   }
 
+  //Creates a list of all Questions
   createList() {
     let thisTopic = this.props.match.params.topic.toLowerCase();
     
 
     
-    return this.props.questions.reverse().map((question) => {
+    return this.props.questions.map((question) => {
       if(thisTopic === question.topic){
         return(
         <IndividualQuestion 
+        key={question._id}
         id={question._id}
         user={question.user}
         date={new Date(question.date).toLocaleDateString()}
@@ -33,6 +35,7 @@ class Questions extends Component {
           />
         )
       }
+      else return null
     })
   }
   handleClick(event) {
@@ -44,7 +47,7 @@ class Questions extends Component {
   }
 
   fetchProtectedData = () => {
-    this.props.dispatch(fetchProtectedData());
+    this.props.dispatch(fetchQuestions());
   }
 
   choosePicture() {

@@ -142,6 +142,8 @@ export const newQuestionsReducer = (state = initialState, action) => {
         })
       }
     }else if (action.type === actions.FETCH_UPDATE_QUESTIONS_SUCCESS){
+      return{ 
+      ...state , 
       questions: state.questions.map((item,index) => {
         if(item._id === action.question._id){
           item.question = action.question.question;
@@ -153,5 +155,6 @@ export const newQuestionsReducer = (state = initialState, action) => {
         }
       })
     }
-  return state
   }
+  return state
+}

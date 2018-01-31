@@ -5,22 +5,29 @@ import {login} from '../actions/auth';
 import {required, nonEmpty} from '../validators';
 
 export class LoginForm extends React.Component {
+
+    //When submitted, username and password are submitted
     onSubmit(values) {
+
         return this.props.dispatch(login(values.username, values.password));
     }
+
+    //logs into demo
     onEnter() {
         return this.props.dispatch(login('demo', 'demo1234'));
     }
 
     render() {
+
+        //Gives Error message if necessary
         let error;
-        // if (this.props.error) {
-        //     error = (
-        //         <div className="form-error" aria-live="polite">
-        //             {this.props.error}
-        //         </div>
-        //     );
-        // }
+        if (this.props.error) {
+            error = (
+                <div className="form-error" aria-live="polite">
+                    {this.props.error}
+                </div>
+            );
+        }
         return (
             <div className='login-form-wrapper'>
             <form
@@ -30,7 +37,7 @@ export class LoginForm extends React.Component {
                 )}
                 
                 >
-                {error}
+                
                 <Field
                     component={Input}
                     type="text"
@@ -49,6 +56,7 @@ export class LoginForm extends React.Component {
                     validate={[required, nonEmpty]}
                     
                 />
+                {error}
                 <button className='login-button' disabled={this.props.pristine || this.props.submitting}>
                     Login
                 </button>
@@ -60,7 +68,7 @@ export class LoginForm extends React.Component {
             }} 
             className='login-button'>
             Demo
-            </button>
+            </button> 
             </div>
         );
     }

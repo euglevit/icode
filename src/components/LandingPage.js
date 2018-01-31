@@ -1,28 +1,22 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import Questions from './Questions';
-import {Link, Redirect, Route, Router} from 'react-router-dom';
+import {Link,} from 'react-router-dom';
 import {fetchQuestions,fetchAnswers} from '../actions/index';
 import './LandingPage.css';
 
-import LoginForm from './LoginForm';
-
 class LandingPage extends Component{
-    // If we are logged in redirect straight to the user's dashboard
 
     constructor(...args) {
       super(...args);
   
-      this.props = {loading : true};
-
-      if (this.props.loggedIn) {
-        return <Redirect to="/questions/javascript" />;
-      }
+      this.state = {loading : true};
     }
+
     componentDidMount(){
       this.fetchQuestions()
     }
-  
+
+    //Fetches all Questions and answers
     fetchQuestions = () => {
       this.props.dispatch(fetchQuestions());
       this.props.dispatch(fetchAnswers());
@@ -30,16 +24,14 @@ class LandingPage extends Component{
 
 
     render(){
-      
-      if(this.props.loading){
-        return <div></div>
-      }
+    if(this.props.loading){
+      return ''
+    }
     return (
         <div className="home">
           <div className='nav-links'>
             <Link to={{pathname: '/'}} className='home-link'>Home</Link>
-            <Link className='register-link' to="/register">Register</Link>
-            
+            {this.props.loggedIn ? '' : <Link className='register-link' to="/register">Register</Link> }
           </div>
           <div className='banner'>
             <h2>Welcome To iCode, Where You Can Get Answers To Your Web Development Questions</h2>

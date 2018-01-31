@@ -11,12 +11,13 @@ class Edit extends Component{
     this.textArea;
   }
   
+  //Edits the comment
   editComment(comment,answerid,questionid){
-    // this.props.dispatch(editComment(comment,answerid));
     this.props.dispatch(fetchUpdateAnswers({"comment" : comment, "id" : answerid},questionid))
   };
+
+  //Deletes the comment
   deleteComment(answerid,questionid){
-    // this.props.dispatch(fetchDeleteAnswers())
     this.props.dispatch(fetchDeleteAnswers({"id" : answerid},questionid));
   };
 
@@ -35,11 +36,11 @@ class Edit extends Component{
               </div>
             </Collapse>
           </div>
-          <Button onClick={(event) => this.setState({ open: !this.state.open })}
+          <button onClick={(event) => this.setState({ open: !this.state.open })}
           type="button" className="btn btn-default" aria-label="Left Align">
             <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-          </Button>
-          <Button onClick={(event) => {
+          </button>
+          <button onClick={(event) => {
             event.preventDefault();
             event.stopPropagation();
             document.find
@@ -48,7 +49,7 @@ class Edit extends Component{
           }}
           type="button" className="btn btn-default" aria-label="Left Align">
             <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
-          </Button>
+          </button>
           
         </div>
       )

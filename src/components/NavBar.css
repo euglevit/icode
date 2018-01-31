@@ -18,6 +18,9 @@
 .navbar::after{
   content: none;
 }
+.left-menu{
+
+}
 
 
 .navbar h1{
@@ -50,17 +53,23 @@
 }
 .login-form{
   display: grid;
-  grid-template-columns: auto auto 1fr;
   align-self: center;
   justify-items: flex-end;
-  grid-template-rows: 34px;
-  grid-gap: 10px;
+  grid-template-columns: auto auto auto;
+}
+.form-input input{
+  height: 32px;
+}
+.form-input label{
+  
 }
 .login-form-wrapper{
   justify-self: flex-end;
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 10px;
+  grid-template-columns: auto auto;
+}
+.login-form-div{
+  justify-self: flex-end;
 }
 .logout-class{
   text-align:right;
@@ -68,6 +77,7 @@
 }
 .form-input{
   align-self: end;
+  margin-right: 10px;
 }
 .glyphicon{
   vertical-align: middle;
@@ -79,28 +89,33 @@
   font-size: 32px;
 }
 
-@media screen and (max-width: 500px){
-  .navbar{
-    grid-template-columns: 1fr;
-  }
+@media screen and (max-width: 590px){
   .left-menu{
     display: none;
   }
-  .logout-class{
-    text-align: center;
-  }
-
   .login-form-div{
     margin: auto;
     justify-self: center;
   }
+  .logout-class{
+    text-align: center;
+  }
+  .navbar{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 500px){
+
+
+
   .login-form{
   }
   #username{
-    width: 110px;
+    width: 99%;
   }
   #password{
-    width: 110px;
+    width: 99%;
   }
   
 }
@@ -112,6 +127,7 @@
   background-color: #2dbe60;
   border: none;
   color: white;
+  margin-right: 10px;
 }
 
 .login-button:hover{
