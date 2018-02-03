@@ -1,19 +1,19 @@
 .user-tag{
-  background-color: #E9E9E9;
-  color: black;
+  color: #aeb6b8;
   font-size: 14px;
+  text-align: left;
 }
 .user-tag-wrapper{
-  display: grid;
-  grid-template-rows: 30px 60px;
-  grid-gap: 25px;
-  align-items: center;
+
+}
+.user-green{
+  color: #2dbe60;
 }
 .user-tag p{
   font-size: 12px;
-  text-align: center;
   max-width: 100%;
   word-break: break-word;
+  margin-top: 5px;
 }
 .user-tag p p{
 }

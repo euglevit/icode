@@ -61,7 +61,7 @@
   height: 32px;
 }
 .form-input label{
-  
+
 }
 .login-form-wrapper{
   justify-self: flex-end;
@@ -81,6 +81,7 @@
 }
 .glyphicon{
   vertical-align: middle;
+  color: #2db360;
 }
 .logo{
   vertical-align: middle;

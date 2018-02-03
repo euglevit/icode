@@ -23,6 +23,14 @@
   display: block;
   margin: auto;
   margin-top: 10px;
+  background: #2dbe60;
+  color: #ffffff;
+  border: none;
+}
+.submitAnswer:hover{
+  background: #2dbe60;
+  color: #ffffff;
+  border: none;
 }
 
 .new-answer-button{

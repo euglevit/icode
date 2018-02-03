@@ -3,7 +3,6 @@ import NavBar from './NavBar';
 import Questions from './Questions';
 import Answers from './Answers';
 import NewQuestion from './NewQuestion';
-// import Sidebar from './Sidebar';
 import LandingPage from './LandingPage.js';
 import RegistrationPage from './RegistrationPage';
 import './HomePage.css';
@@ -60,7 +59,6 @@ class HomePage extends Component{
     return(
       <div className='wrapper'>
           <NavBar />
-          {/* <Sidebar /> */}
           <div className='main-content'>
             <Route exact path='/' component={LandingPage}/>
               <Route path='/questions/:topic' component={Questions}/>

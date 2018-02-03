@@ -4,12 +4,15 @@ import UserTag from './UserTag';
 
 class IndividualQuestion extends Component{
 
+  _onClick = (e) => {
+    this.props.history.push(`/answers/${this.props.id}`)
+  }
   render(){
     return(
-      <div className='total-questions-wrapper' onClick={(event) => {
-        this.props.history.push(`/answers/${this.props.id}`)
-        }}>
-
+      <div className='total-questions-wrapper'>
+        <div className='all-question-question'>
+          <p onClick={this._onClick}>{this.props.question}</p>
+        </div>
         <div className='all-question-user'>
             <UserTag
               user={this.props.user}
@@ -17,14 +20,8 @@ class IndividualQuestion extends Component{
               time={this.props.time}
             />
         </div>
-        <div className='all-question-question'>
-          <p>{this.props.question}</p>
-        </div>
-        <div className='all-question-last-post'>
-          <p>{ this.props.comments.length >= 1 ? this.props.comments[0].user : 'none'}</p>
-        </div>
         <div className='all-question-comment-count'>
-          <p>{this.props.comments.length}</p>
+          <p>{this.props.comments.length} comments</p>
         </div>
       </div>
     )

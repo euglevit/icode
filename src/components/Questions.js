@@ -50,34 +50,7 @@ class Questions extends Component {
     this.props.dispatch(fetchQuestions());
   }
 
-  choosePicture() {
-    let pic =
-      {
-        Javascript:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJXtjZwB6zdB4WoHDMyBDvX-4Xk3zbU_Z7tGKH-jyWPCXwWHv1xw',
-        jQuery: 'https://avatars0.githubusercontent.com/u/70142?s=200&v=4',
-        Node: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfzZDbbYL2rzTcPlRaNXe7eWxZ1pray0VDpxZKwsztrVGumPnjnA',
-        React: 'https://cdn-images-1.medium.com/max/1600/1*qUlxDdY3T-rDtJ4LhLGkEg.png',
-        Ajax: 'https://static.hltv.org/images/team/logo/7558',
-        Git: 'https://avatars1.githubusercontent.com/u/18133?s=400&v=4'
-      }
-      if(this.props.match.params.topic.toLowerCase() === 'javascript'){
-        return pic.Javascript;
-      }else if(this.props.match.params.topic.toLowerCase() === 'jquery'){
-        return pic.jQuery;
-      }else if(this.props.match.params.topic.toLowerCase() === 'node'){
-        return pic.Node;
-      }else if(this.props.match.params.topic.toLowerCase() === 'react'){
-        return pic.React;
-      }else if(this.props.match.params.topic.toLowerCase() === 'ajax'){
-        return pic.Ajax;
-      }else if(this.props.match.params.topic.toLowerCase() === 'git'){
-        return pic.Git;
-      }
-    }
-    
-  
   render() {
-    
     if(this.props.loading){
       return <div></div>
     }
@@ -89,31 +62,29 @@ class Questions extends Component {
             <span className='arrows'> >> </span>
             <Link className='topic-link' to={{pathName: `/topics/${this.props.match.params.topic}`}}>{this.props.match.params.topic}</Link>
           </div>
-          <div className='topic-header-wrapper'>
-            <div className='topic-header'>
-              <h1>{this.props.match.params.topic}</h1>
-              <img alt='topic-pic' src={this.choosePicture()} height='100' width='120'></img>
-    <div>{this.props.loggedIn ? <a onClick={(event => {
-      event.stopPropagation();
-      event.preventDefault();
-      this.props.history.push('/new');
-    })} className='navbar-button'>New Question</a> : <div></div>}</div>
+          <div className='banner'>
+            <p className="banner-header">iCode FORUM</p>
+            <div className='banner-div'>
+              <p className="banner-topic">Welcome</p>
+              <p>Welcome To iCode, Where You Can Get Answers To Your Web Development Questions. Start By Registering, Or Click On A Topic Below That Interests You.</p>
+              {this.props.loggedIn ?
+              <div>
+              <p className='banner-topic'><Link to="/new">New</Link></p>
+              <p>Have A Question? Click Here To Post It To iCode And Get An Answer ASAP!</p>
+              </div>
+              :
+              <div>
+              <p className='banner-topic'><Link to="/register">Register</Link></p>
+              <p>Register For iCode So You Could Post Questions And Help Other Users Get Answers To Their Questions.</p>
+              </div>
+              }
             </div>
           </div>
+          <div className='topic-header-wrapper'>
+          </div>
           <div className='questions-header'>
-          <div className='all-questions-header'>
-            <div className='all-questions-user'>
-              <p>User</p>
-            </div>
-            <div className='all-questions-question'>
-              <p>Questions</p>
-            </div>
-            <div className='all-questions-last-post'>
-              <p>User</p>
-            </div>
-            <div className='all-questions-comment-count'>
-              <p>Count</p>
-            </div>
+          <div className='header-topics'>
+            <p>{this.props.questions.length} {this.props.match.params.topic.toUpperCase()} Questions</p>
           </div>
           <div className='list-group total-question-ul'>{this.createList()}</div>
           <Route path='/answers/:question' component={Answers}></Route>

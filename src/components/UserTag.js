@@ -8,9 +8,8 @@ class UserTag extends Component{
     return(
       <div className='user-tag-wrapper'>
         <div className='user-tag'>
-          <span><p>{this.props.user}</p></span>
+          <span><p>Asked by <span className='user-green'>{this.props.user}</span>, {this.props.date} at {this.props.time} </p></span>
         </div>
-        <img alt='user-pic' className='user-picture' src='https://openclipart.org/download/247324/abstract-user-flat-1.svg' height='42' width='42'/>
       </div>
     )
   }

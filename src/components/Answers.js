@@ -1,11 +1,10 @@
 import React,{Component} from 'react';
 import NewAnswer from './NewAnswer';
-import UserTag from './UserTag';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import './Answers.css';
-import { fetchQuestions, fetchUpdateQuestion } from '../actions/index';
+import { fetchQuestions, fetchUpdateQuestion} from '../actions/index';
 import IndividualAnswer from './IndividualAnswer';
 
 
@@ -105,18 +104,33 @@ class Answers extends Component{
             <Link className='topic-link' to={{pathname: `/questions/${headerQuestion[0].topic}/`}}>{headerQuestion[0].topic}</Link> <span className='arrows'> >> </span>
             <Link className='question-index-link' to={{pathname: `/answers/${thisQuestion}`}}>Question #{parseInt(this.props.questions.indexOf(headerQuestion[0]),10)+1}</Link>
           </div>
+          <div className='banner'>
+            <p className="banner-header">iCode FORUM</p>
+            <div className='banner-div'>
+              <p className="banner-topic">Welcome</p>
+              <p>Welcome To iCode, Where You Can Get Answers To Your Web Development Questions. Start By Registering, Or Click On A Topic Below That Interests You.</p>
+              {this.props.loggedIn ?
+              <div>
+              <p className='banner-topic'><Link to="/new">New</Link></p>
+              <p>Have A Question? Click Here To Post It To iCode And Get An Answer ASAP!</p>
+              </div>
+              :
+              <div>
+              <p className='banner-topic'><Link to="/register">Register</Link></p>
+              <p>Register For iCode So You Could Post Questions And Help Other Users Get Answers To Their Questions.</p>
+              </div>
+              }
+            </div>
+          </div>
         <div className='total-question-wrapper'>
-          <div className='total-question-header'>
-            <p>{new Date(headerQuestion[0].date).toLocaleDateString()}, {new Date(headerQuestion[0].date).toLocaleTimeString()}</p>
+          <div className='question-header'>
+            <img src="http://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='40px' width='40px'/>
+            <div className="header-p-div">
+              <p className='question-page-user'>{headerQuestion[0].user}</p>
+              <p>Posted {new Date(headerQuestion[0].date).toLocaleDateString()} at {new Date(headerQuestion[0].date).toLocaleTimeString()}</p>
+            </div>
           </div>
           <div className='total-question list-group-item total-question-ul'>
-            <div className='user-tag'>
-              <UserTag
-                user={headerQuestion[0].user}
-                date={new Date(headerQuestion[0].date).toLocaleDateString()}
-                time={new Date(headerQuestion[0].date).toLocaleTimeString()}
-              />
-            </div>
             <div className='asked-question'>
               <div>{this.props.auth.currentUser && this.props.auth.currentUser.username === headerQuestion[0].user ? 
               <div>
@@ -135,14 +149,7 @@ class Answers extends Component{
                 <div className='edit-functions'>
                 <a className='edit-link' onClick={this._onClick}> 
                   <span>Edit</span>
-                </a>
-                <a className='delete-link' onClick={(event) => {
-                  event.preventDefault();
-                  event.stopPropagation();
-                  this.deleteComment(this.props.id,this.props.questionId);
-                }}>
-                  <span>Delete</span>
-                  </a></div>
+                </a></div>
                 </div>
               : 
               <div>
@@ -167,6 +174,7 @@ const mapStateToProps = state => {
     auth : state.auth,
     loading : state.newQuestionsReducer.loading,
     loadin : state.protectedData.loadin,
+    loggedIn: state.auth.currentUser !== null
   };
 };
 export default withRouter(connect(mapStateToProps)(Answers));

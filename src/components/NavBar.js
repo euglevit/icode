@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import './NavBar.css';
 import LoginForm from './LoginForm';
-import './Sidebar.css';
 import {connect} from 'react-redux';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
@@ -16,6 +15,7 @@ class NavBar extends Component{
       this.state = { show: false };
   }
 
+  
   logOut() {
     this.props.dispatch(clearAuth());
     clearAuthToken();
