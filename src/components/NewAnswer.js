@@ -34,6 +34,7 @@ class NewAnswer extends Component{
       return alert('Please Enter Text.');
     }else{
       this.addAnswer(user,this.state.answerArea,this.props.questionId);
+      this.setState({answerArea : ''});
     }
   }
 
