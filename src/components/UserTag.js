@@ -8,7 +8,7 @@ class UserTag extends Component{
     return(
       <div className='user-tag-wrapper'>
         <div className='user-tag'>
-          <span><p>Asked by <span className='user-green'>{this.props.user}</span>, {this.props.date} at {this.props.time} </p></span>
+          <span><p>Asked by <span className='user-green'>{this.props.user}</span>, {this.props.date}</p></span>
         </div>
       </div>
     )

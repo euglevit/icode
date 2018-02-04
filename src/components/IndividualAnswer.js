@@ -83,7 +83,7 @@ class IndividualAnswer extends Component{
           <img src="http://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='40px' width='40px'/>
           <div className="header-p-div">
             <p className='question-page-user'>{this.props.commentUser}</p>
-            <p>Posted {this.props.date} at {this.props.time}</p>
+            <p>Posted {this.props.date}</p>
           </div>
         </div>
         <div className='total-question list-group-item comment total-question-ul' id={`a${this.props.id}`}>

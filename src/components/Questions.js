@@ -26,7 +26,6 @@ class Questions extends Component {
         id={question._id}
         user={question.user}
         date={new Date(question.date).toLocaleDateString()}
-        time={new Date(question.date).toLocaleTimeString()}
         question={question.question}
         comments={question.comments}
         history={this.props.history}

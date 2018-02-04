@@ -17,7 +17,6 @@ class IndividualQuestion extends Component{
             <UserTag
               user={this.props.user}
               date={this.props.date}
-              time={this.props.time}
             />
         </div>
         <div className='all-question-comment-count'>
