@@ -1,5 +1,6 @@
 
-import {CLIENT_ORIGIN} from '../config';
+// import {CLIENT_ORIGIN} from '../config';
+const CLIENT_ORIGIN = 'https://salty-falls-95504.herokuapp.com/';
 export const ADD_QUESTION = 'ADD QUESTION';
 export const addQuestion = (question,topic,user,date,id, comments) => {
   return{
