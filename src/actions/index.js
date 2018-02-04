@@ -1,6 +1,5 @@
 
-const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || '';
-
+import {CLIENT_ORIGIN} from '../config';
 export const ADD_QUESTION = 'ADD QUESTION';
 export const addQuestion = (question,topic,user,date,id, comments) => {
   return{
