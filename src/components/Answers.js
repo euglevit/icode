@@ -124,7 +124,7 @@ class Answers extends Component{
           </div>
         <div className='total-question-wrapper'>
           <div className='question-header'>
-            <img src="http://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='40px' width='40px'/>
+            <img src="https://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='40px' width='40px'/>
             <div className="header-p-div">
               <p className='question-page-user'>{headerQuestion[0].user}</p>
               <p>Posted {new Date(headerQuestion[0].date).toLocaleDateString()} at {new Date(headerQuestion[0].date).toLocaleTimeString()}</p>

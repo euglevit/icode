@@ -3,11 +3,9 @@
   width: 100%;
   transition: padding-left .5s;
   height: 100%;
-  /* background: #f2f2f2; */
   padding-top: 16px;
   padding-bottom: 40px;
   grid-area: main;
-  /* background: url('https://onaircode.com/wp-content/uploads/2017/11/CanvasRenderer-Gradient-Background.jpg'); */
   min-height: 100vh
 }
 
@@ -21,7 +19,6 @@
   white-space: pre-wrap;
   display: grid;
   position: relative;
-  /* grid-template-rows: auto [content-top] 1fr [content-bottom] auto [footer-bottom]; */
   grid-template-columns: [content-start] min-content [mid-content] auto [end-content];
   grid-template-rows: 80px 2fr 30px;
   grid-template-areas: 
