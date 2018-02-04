@@ -135,7 +135,6 @@ export const fetchAddQuestions = (pass) => (dispatch,getState) => {
     method : 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Origin': '*',
       Authorization: `Bearer ${authToken}`
     },
     body: pass
@@ -166,7 +165,6 @@ export const fetchAddAnswers = (pass,id) => (dispatch,getState) => {
     method : 'POST',
     headers : {
       'Content-Type' : 'application/json',
-      'Access-Control-Origin' : '*',
       Authorization : `Bearer ${authToken}`
     },
     body : pass
@@ -195,7 +193,6 @@ export const fetchDeleteAnswers = (pass,id) => dispatch => {
     method: 'DELETE',
     headers : {
       'Content-Type' : 'application/json',
-      'Access-Control-Allow-Origin' : '*'
     },
     body : pass
   }).then(res => {

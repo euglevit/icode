@@ -48,6 +48,7 @@
   color: white;
   font-size: 18px;
   grid-column-start: 2;
+  grid-column-end: 5;
   justify-self: center;
 }
 

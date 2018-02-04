@@ -50,15 +50,6 @@ export class RegistrationForm extends React.Component {
                     id='password-form' 
                     placeholder='Password'
                 />
-                {/* <label htmlFor="passwordConfirm"><span className="label-float glyphicon glyphicon-lock"></span></label>
-                <Field
-                    component={Input}
-                    type="password"
-                    name="password-confirm-form"
-                    validate={[required, nonEmpty, matches('password')]}
-                    id='password-confirm-form' 
-                    placeholder='Confirm Password'
-                /> */}
                 <button
                     type="submit"
                     className='submit-register-button'
