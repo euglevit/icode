@@ -1,4 +1,6 @@
 import {normalizeResponseErrors} from './utils';
+// import {CLIENT_ORIGIN} from '../config';
+
 
 const API_BASE_URL = process.env.CLIENT_ORIGIN || 'http://localhost:8080';
 

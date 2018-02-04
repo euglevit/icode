@@ -3,6 +3,7 @@ import {SubmissionError} from 'redux-form';
 
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
+// import {CLIENT_ORIGIN} from '../config';
 
 const API_BASE_URL = process.env.CLIENT_ORIGIN || 'http://localhost:8080';
 
