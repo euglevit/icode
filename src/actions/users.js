@@ -1,10 +1,7 @@
-// import {SubmissionError} from 'redux-form';
-
 import {normalizeResponseErrors} from './utils';
-// import {CLIENT_ORIGIN} from '../config';
+import {API_BASE_URL} from '../config';
 
 
-const API_BASE_URL = process.env.CLIENT_ORIGIN || 'http://localhost:8080';
 
 export const registerUser = user => dispatch => {
     return fetch(`${API_BASE_URL}/api/users`, {
