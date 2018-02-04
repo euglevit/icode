@@ -1,5 +1,5 @@
 
-const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:8080';
+const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || '';
 
 export const ADD_QUESTION = 'ADD QUESTION';
 export const addQuestion = (question,topic,user,date,id, comments) => {
