@@ -1,12 +1,8 @@
 import jwtDecode from 'jwt-decode';
 import {SubmissionError} from 'redux-form';
-
+import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
-// import {CLIENT_ORIGIN} from '../config';
-
-const API_BASE_URL = process.env.CLIENT_ORIGIN || 'http://localhost:8080';
-
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
