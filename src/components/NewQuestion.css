@@ -1,15 +1,18 @@
 .new-question-form{
   text-align: center;
 }
+
 .new-question-form h1{
   display: block;
   text-align: center;
   font-size: 60px;
   color: #2dbe60;
 }
+
 .newQuestion{
   text-align: center
 }
+
 #question-ask{
   max-width: 500px;
   width: 90%;
@@ -28,7 +31,7 @@ select{
   color: white;
   width: 100px;
   height: 40px;
-  background: #2dbe60 url(https://i62.tinypic.com/15xvbd5.png) no-repeat scroll 100% center;
+  background: #2dbe60 url(http://i62.tinypic.com/15xvbd5.png) no-repeat scroll 100% center;
   -webkit-appearance: none;
   -moz-appearance: none;
   padding-left: 5px;
