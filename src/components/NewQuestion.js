@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchAddQuestions,fetchQuestions}from '../actions/index';
 import {Button} from 'react-bootstrap';
-import {Redirect} from 'react-router-dom';
+import {Link,Redirect} from 'react-router-dom';
 import store from '../store';
 import './NewQuestion.css';
 
@@ -55,6 +55,9 @@ class NewQuestion extends Component{
     }  
   return(
     <div className='new-question-form'>
+      <div className='nav-links'>
+        <Link to={{pathname: '/'}} className='home-link'>Home</Link>
+      </div>
       <h1>New Question</h1>
       <form onSubmit={this._onSubmit} className='newQuestion'>
         <legend>Topic</legend>

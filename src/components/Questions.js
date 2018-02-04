@@ -18,8 +18,6 @@ class Questions extends Component {
   createList() {
     let thisTopic = this.props.match.params.topic.toLowerCase();
     
-
-    
     return this.props.questions.map((question) => {
       if(thisTopic === question.topic){
         return(
@@ -51,6 +49,11 @@ class Questions extends Component {
   }
 
   render() {
+    let thisTopic = this.props.match.params.topic.toLowerCase();
+
+    let questionLength = this.props.questions.filter(question => {
+      return question.topic === thisTopic;
+    })
     if(this.props.loading){
       return <div></div>
     }
@@ -84,7 +87,7 @@ class Questions extends Component {
           </div>
           <div className='questions-header'>
           <div className='header-topics'>
-            <p>{this.props.questions.length} {this.props.match.params.topic.toUpperCase()} Questions</p>
+            <p>{questionLength.length} {this.props.match.params.topic.toUpperCase()} Questions</p>
           </div>
           <div className='list-group total-question-ul'>{this.createList()}</div>
           <Route path='/answers/:question' component={Answers}></Route>
