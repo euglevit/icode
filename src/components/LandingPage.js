@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {Link,} from 'react-router-dom';
 import {fetchQuestions,fetchAnswers} from '../actions/index';
+import LandingHeader from './LandingHeader';
 import './LandingPage.css';
 
 class LandingPage extends Component{
@@ -32,6 +33,7 @@ class LandingPage extends Component{
           <div className='nav-links'>
             <Link to={{pathname: '/'}} className='home-link'>Home</Link>
           </div>
+          <LandingHeader />
           <div className='banner'>
             <p className="banner-header">iCode FORUM</p>
             <div className='banner-div'>

@@ -3,7 +3,7 @@ import NavBar from './NavBar';
 import Questions from './Questions';
 import Answers from './Answers';
 import NewQuestion from './NewQuestion';
-import LandingPage from './LandingPage.js';
+import LandingPage from './LandingPage';
 import RegistrationPage from './RegistrationPage';
 import './HomePage.css';
 import {connect} from 'react-redux';

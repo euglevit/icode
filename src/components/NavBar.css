@@ -47,7 +47,7 @@
 .navbar p{
   margin: 0 0 0 0;
   -ms-flex-item-align: auto;
-  align-self: auto;
+  align-self: end;
   font-size: 20px;
   color: white
 }
@@ -56,6 +56,10 @@
   align-self: center;
   justify-items: flex-end;
   grid-template-columns: auto auto auto;
+}
+.login-form label{
+  color: white;
+  font-size: 12px;
 }
 .form-input input{
   height: 32px;
@@ -123,7 +127,7 @@
 
 .login-button{
   height: 32px;
-  align-self: center;
+  align-self: end;
   justify-self: left;
   background-color: #2dbe60;
   border: none;

@@ -56,7 +56,6 @@
 }
 
 .total-question-wrapper{
-  margin: auto;
   display: grid;
   grid-template-rows: 54px minmax(100px,auto);
   margin-top: 15px;
@@ -90,20 +89,46 @@
   display: inline-block;
   text-align: center;
   margin-top: 7px;
+  color: white;
+  background-color: #2dbe60;
+}
+
+.submit-answer-button:hover{
+  background-color: #0d9f40;
 }
 
 .cancel-answer-button{
   margin-left: 10px;
+  margin-top: 7px;
+  background-color: #2dbe60;
+  color: white;
+}
+
+.cancel-answer-button:hover{
+  background-color: #0d9f40;
 }
 
 .comment-area{
   margin-bottom: 15px;
 }
 
+a:not([href]):not([tabindex]){
+  color: #2dbe60;
+}
+
+a:not([href]):not([tabindex]):hover{
+  color: #2dbe60;
+}
+
 .edit-answer-functions{
   display: block;
   margin: auto;
   text-align: center;
+}
+
+.edit-answer-functions a{
+  color: #2dbe60;
+  cursor: pointer;
 }
 
 .question-edit{

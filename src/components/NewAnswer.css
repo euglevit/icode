@@ -32,6 +32,10 @@
   color: #ffffff;
   border: none;
 }
+.edit-link span{
+  color: #2dbe60;
+  cursor: pointer;
+}
 
 .new-answer-button{
   text-align: center;

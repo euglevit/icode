@@ -69,7 +69,7 @@ class NewQuestion extends Component{
             <option id='ajax' value='Ajax'>Ajax</option>
             <option id='git' value='Git'>Git</option>
           </select>
-          <legend>Question</legend>
+          <legend>Ask A Question Below</legend>
           <textarea id='question-ask' placeholder='What is your question?' minLength='30'></textarea>
           <Button type = 'submit' className='submit-question'>Submit Question</Button>
       </form>

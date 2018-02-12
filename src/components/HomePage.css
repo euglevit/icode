@@ -20,7 +20,7 @@
   display: grid;
   position: relative;
   grid-template-columns: [content-start] min-content [mid-content] auto [end-content];
-  grid-template-rows: 80px 2fr 30px;
+  grid-template-rows: 100px 2fr 30px;
   grid-template-areas: 
   "navbar navbar"
   "main main"

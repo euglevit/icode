@@ -3,6 +3,7 @@ import NewAnswer from './NewAnswer';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
+import {Button} from 'react-bootstrap';
 import './Answers.css';
 import { fetchQuestions, fetchUpdateQuestion} from '../actions/index';
 import IndividualAnswer from './IndividualAnswer';
@@ -136,8 +137,8 @@ class Answers extends Component{
               {this.state.editing ? <div>
               <div className='question-edit' contentEditable='true' suppressContentEditableWarning autoFocus ref='textarea1'>{headerQuestion[0].question}</div>
                 <div className='edit-answer-functions'>
-                  <a className='submit-answer-button' onClick={this._onSubmit.bind(this)}>Submit</a>
-                  <a className='cancel-answer-button' onClick={this._onCancel}>Cancel</a>
+                  <Button className='submit-answer-button' onClick={this._onSubmit.bind(this)}>Submit</Button>
+                  <Button className='cancel-answer-button' onClick={this._onCancel}>Cancel</Button>
                 </div>
               </div>
               :
@@ -147,7 +148,7 @@ class Answers extends Component{
                 : '' }
                 <div className='edit-functions'>
                 <a className='edit-link' onClick={this._onClick}> 
-                  <span>Edit</span>
+                  <span>Edit Question</span>
                 </a></div>
                 </div>
               : 

@@ -45,7 +45,7 @@ class NewAnswer extends Component{
       <div className='new-answer-button'>
             <form onSubmit={this._onSubmit}>
               <input onChange={this._onChange} value={this.state.answerArea} contentEditable='true' suppressContentEditableWarning id='newAnswer' placeholder='Enter Comment'></input>
-              <Button type='submit'className='submitAnswer'>Submit</Button>
+              <Button type='submit'className='submitAnswer'>Enter Comment</Button>
             </form>
       </div>
     )
