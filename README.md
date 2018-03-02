@@ -1,13 +1,13 @@
-#iCode
+# iCode
 
-##Summary
+## Summary
 
 iCode is a forum for those new to programming to post questions and get answers. 
 
-##Link To Live Version  
+## Link To Live Version  
 [iCode](https://icodeproject.herokuapp.com/)
 
-##Instructions
+## Instructions
 1. User chooses a topic of interest.
 2. User browses through questions. User can select a question.
 3. User looks at selected questions and all comments that are posted. If user is logged in, user can also leave a comment. 
