@@ -53,7 +53,7 @@
   width: 65%;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 20px;
+  height: 35px;
   color: #2dbe60;
   font-size: 16px;
   cursor: pointer;
@@ -93,14 +93,13 @@
 }
 .outer-padding{
   margin: auto;
-  padding: 10px;
   margin-top: 10px;
   width: 98%;
 }
 
 .questions-header{
   display: grid;
-  grid-template-rows: 36px 8fr;
+  grid-template-rows: 50px 8fr;
   margin: auto
 }
 

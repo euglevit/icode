@@ -1,12 +1,13 @@
 .main-content{
   padding-left:0px;
-  width: 100%;
+  max-width: 98%;
   transition: padding-left .5s;
   height: 100%;
   padding-top: 16px;
   padding-bottom: 40px;
   grid-area: main;
-  min-height: 100vh
+  min-height: 100vh;
+  margin: auto;
 }
 
 .wrapper.menuDisplayed .main-content{
@@ -19,6 +20,7 @@
   white-space: pre-wrap;
   display: grid;
   position: relative;
+  overflow: hidden;
   grid-template-columns: [content-start] min-content [mid-content] auto [end-content];
   grid-template-rows: 100px 2fr 30px;
   grid-template-areas: 
@@ -36,6 +38,11 @@
   background-color: black;
   color: white;
   grid-area: footer;
+  overflow: none;
+}
+
+.footer p{
+  padding-left: 8px;
 }
 
 .root{

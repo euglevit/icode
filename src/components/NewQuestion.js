@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchAddQuestions,fetchQuestions}from '../actions/index';
-import {Button} from 'react-bootstrap';
 import {Link,Redirect} from 'react-router-dom';
 import store from '../store';
 import './NewQuestion.css';
@@ -71,7 +70,7 @@ class NewQuestion extends Component{
           </select>
           <legend>Ask A Question Below</legend>
           <textarea id='question-ask' placeholder='What is your question?' minLength='30'></textarea>
-          <Button type = 'submit' className='submit-question'>Submit Question</Button>
+          <button type = 'submit' className='submit-question'>Submit Question</button>
       </form>
     </div>
     )

@@ -9,7 +9,7 @@
   background: #2dbe60;
   text-transform: uppercase;
   border-radius: 3px 3px 0 0;
-  padding: 14px 15px 2px 25px;
+  padding: 6px 10px 2px 25px;
   font-size: 14px;
   letter-spacing: 1px;
 }
@@ -19,8 +19,7 @@
 }
 
 .user-pic{
-  display: grid;
-  grid-template-rows: auto auto;
+  
 }
 
 .user-pic img{
@@ -35,7 +34,6 @@
 
 .main-table-topics{
   display: grid;
-  width: 100%;
   text-align: center;
   font-size: 12px;
   margin: auto;
@@ -224,11 +222,9 @@
 }
 
 .home{
-  width: 98%;
   margin: auto;
   margin-top: 15px;
   background-color: white;
-  padding: 10px;
   border-radius: 3px;
 }
 

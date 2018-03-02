@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import {Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {fetchDeleteAnswers,fetchUpdateAnswers} from '../actions/index';
@@ -33,8 +32,8 @@ class IndividualAnswer extends Component{
         <div className='answer-area' contentEditable='true' suppressContentEditableWarning onChange={this._onChange} form='comment-form' autoFocus ref='textarea'>{this.props.comment}</div>
       </form>
       <div className='edit-answer-functions'>
-        <Button className='submit-answer-button' onClick={this._onSubmit}>Submit</Button>
-        <Button className='cancel-answer-button' onClick={this._onCancel}>Cancel</Button>
+        <button className='submit-answer-button' onClick={this._onSubmit}>Submit</button>
+        <button className='cancel-answer-button' onClick={this._onCancel}>Cancel</button>
       </div>
       </div>
     )}

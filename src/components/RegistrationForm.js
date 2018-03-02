@@ -28,11 +28,11 @@ export class RegistrationForm extends React.Component {
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                <label htmlFor="firstName"><span className="label-float glyphicon glyphicon-user"></span></label>
+                <label htmlFor="firstName"><i className="label-float far fa-user"></i></label>
                 <Field id='first-name-form' component={Input} type="text" name="firstName" placeholder="First Name" />
-                <label htmlFor="lastName"><span className="label-float glyphicon glyphicon-user"></span></label>
+                <label htmlFor="lastName"><i className="label-float far fa-user"></i></label>
                 <Field id='last-name-form' component={Input} type="text" name="lastName" placeholder='Last Name'/>
-                <label htmlFor="username"><span className="label-float glyphicon glyphicon-user"></span></label>
+                <label htmlFor="username"><i className="label-float far fa-user"></i></label>
                 <Field
                     component={Input}
                     type="text"
@@ -41,7 +41,7 @@ export class RegistrationForm extends React.Component {
                     id='user-name-form' 
                     placeholder='Username'
                 />
-                <label htmlFor="password"><span className="label-float glyphicon glyphicon-lock"></span></label>
+                <label htmlFor="password"><i className="label-float fas fa-lock"></i></label>
                 <Field
                     component={Input}
                     type="password"

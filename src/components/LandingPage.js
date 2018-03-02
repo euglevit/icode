@@ -63,7 +63,7 @@ class LandingPage extends Component{
                   <p>Learn about the world's most popular programming language.</p>
                   <p className='post-count'>{this.props.questions.filter(question => question.topic==='javascript').length} posts</p>
                 </div>
-                <div className='user-pic'><img src="https://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
+                <div className='user-pic'><img src="http://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
               </div>
               <div className='main-table-topics'>
                 <div className='question-topic'>
@@ -71,7 +71,7 @@ class LandingPage extends Component{
                   <p>Find answers about a popular Javascript library.</p>
                   <p className='post-count'>{this.props.questions.filter(question => question.topic==='jquery').length} posts</p>
                 </div>
-                <div className='user-pic'><img src="https://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
+                <div className='user-pic'><img src="http://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
               </div>
               <div className='main-table-topics'>
                 <div className='question-topic'>
@@ -79,7 +79,7 @@ class LandingPage extends Component{
                   <p>Learn about a popular Javascript runtime environment.</p>
                   <p className='post-count'>{this.props.questions.filter(question => question.topic==='node').length} posts</p>
                 </div>
-                <div className='user-pic'><img src="https://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
+                <div className='user-pic'><img src="http://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
               </div>
               <div className='main-table-topics'>
                 <div className='question-topic'>
@@ -87,7 +87,7 @@ class LandingPage extends Component{
                   <p>Learn about a popular Javascript framework.</p>
                   <p className='post-count'>{this.props.questions.filter(question => question.topic==='react').length} posts</p>
                 </div>
-                <div className='user-pic'><img src="https://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
+                <div className='user-pic'><img src="http://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
               </div>
               <div className='main-table-topics'>
                 <div className='question-topic'>
@@ -95,7 +95,7 @@ class LandingPage extends Component{
                   <p>Find out more about creating asynchronous client side Web Applications.</p>
                   <p className='post-count'>{this.props.questions.filter(question => question.topic==='ajax').length} posts</p>
                 </div>
-                <div className='user-pic'><img src="https://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
+                <div className='user-pic'><img src="http://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
               </div>
               <div className='main-table-topics'>
                 <div className='question-topic'>
@@ -103,7 +103,7 @@ class LandingPage extends Component{
                   <p>Learn more about a popular version control system.</p>
                   <p className='post-count'>{this.props.questions.filter(question => question.topic==='git').length} posts</p>
                 </div>
-                <div className='user-pic'><img src="https://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
+                <div className='user-pic'><img src="http://www.noworrynotension.com/SignIn/assets/images/user-icon-png-pnglogocom.png" alt="user" height='32px' width='32px'/><p>{this.props.questions.filter(question => question.topic === 'javascript').pop().user}</p></div>
               </div>
             </div>
             </div>

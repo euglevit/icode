@@ -3,10 +3,9 @@
   display: grid;
   -ms-flex-align: center;
   align-items: center;
-  width: 100%;
   grid-template-columns: 1fr 1fr;
   padding: 8px;
-  grid-template-rows: 60px;
+  grid-template-rows: 83px;
   margin-bottom: 0px;
   grid-area: navbar;
   border-radius: 0px;
@@ -20,6 +19,10 @@
 }
 .left-menu{
 
+}
+
+a{
+  text-decoration: none;
 }
 
 
@@ -46,10 +49,10 @@
 }
 .navbar p{
   margin: 0 0 0 0;
-  -ms-flex-item-align: auto;
-  align-self: end;
-  font-size: 20px;
-  color: white
+    -ms-flex-item-align: auto;
+    font-size: 23px;
+    color: white;
+    align-self: center;
 }
 .login-form{
   display: grid;
@@ -62,7 +65,8 @@
   font-size: 12px;
 }
 .form-input input{
-  height: 32px;
+  height: 25px;
+  font-size: 14px;
 }
 .form-input label{
 
@@ -74,6 +78,7 @@
 }
 .login-form-div{
   justify-self: flex-end;
+  align-self: center;
 }
 .logout-class{
   text-align:right;
@@ -133,6 +138,7 @@
   border: none;
   color: white;
   margin-right: 10px;
+  font-size: 14px;
 }
 
 .login-button:hover{
