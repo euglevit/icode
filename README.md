@@ -1,6 +1,6 @@
-# iCode
+#iCode
 
-## Summary
+##Summary
 
 iCode is a forum for those new to programming to post questions and get answers. 
 
